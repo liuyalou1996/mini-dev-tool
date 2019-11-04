@@ -1,14 +1,16 @@
 package com.universe.ui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow {
 
@@ -44,12 +46,15 @@ public class MainWindow {
     SashForm sashform = new SashForm(shell, SWT.NONE);
 
     Composite compTree = new Composite(sashform, SWT.BORDER | SWT.H_SCROLL);
+    compTree.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_DARK_SHADOW));
     compTree.setLayout(new FillLayout(SWT.HORIZONTAL));
 
     Tree treeMenu = new Tree(compTree, SWT.BORDER | SWT.FULL_SELECTION);
+    treeMenu.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+    treeMenu.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 
     TreeItem tiJsonTransformation = new TreeItem(treeMenu, SWT.NONE);
-    tiJsonTransformation.setText("Json相关");
+    tiJsonTransformation.setText("Json转换");
 
     TreeItem tiJsonFormat = new TreeItem(tiJsonTransformation, SWT.NONE);
     tiJsonFormat.setText("Json字符串格式化");
@@ -66,16 +71,26 @@ public class MainWindow {
 
     TreeItem tiGenByXml = new TreeItem(tiMybatisGenerator, SWT.NONE);
     tiGenByXml.setText("根据配置文件生成");
-    tiGenByXml.setExpanded(true);
 
     TreeItem tiGenByJava = new TreeItem(tiMybatisGenerator, SWT.NONE);
     tiGenByJava.setText("自定义配置生成");
-    tiMybatisGenerator.setExpanded(true);
 
     Composite compContent = new Composite(sashform, SWT.NONE);
-    StackLayout sl_compContent = new StackLayout();
-    compContent.setLayout(sl_compContent);
-    sashform.setWeights(new int[] { 202, 741 });
+    compContent.setLayout(new FillLayout(SWT.HORIZONTAL));
 
+    CTabFolder tabFolder = new CTabFolder(compContent, SWT.BORDER | SWT.CLOSE);
+    tabFolder.setTouchEnabled(true);
+    tabFolder.setTabHeight(25);
+    tabFolder.setSimple(false);
+    tabFolder.setMinimizeVisible(true);
+    tabFolder.setMaximizeVisible(true);
+    tabFolder.setSelectionBackground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
+
+    CTabItem tbtmNewItem = new CTabItem(tabFolder, SWT.NONE);
+    tbtmNewItem.setText("New Item");
+
+    CTabItem tbtmNewItem_1 = new CTabItem(tabFolder, SWT.NONE);
+    tbtmNewItem_1.setText("New Item");
+    sashform.setWeights(new int[] { 202, 741 });
   }
 }
