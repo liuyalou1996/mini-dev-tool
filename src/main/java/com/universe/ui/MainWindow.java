@@ -99,10 +99,6 @@ public class MainWindow {
     tiJsonFormat.setText("Json字符串格式化");
     tiJsonFormat.setData(SystemConsts.COMP_TYPE, CompTypeConsts.JSON_FORMAT);
 
-    TreeItem tiJsonToBean = new TreeItem(tiJsonTransformation, SWT.NONE);
-    tiJsonToBean.setText("Json转Bean");
-    tiJsonToBean.setData(SystemConsts.COMP_TYPE, CompTypeConsts.JSON_TO_BEAN);
-
     // 初始化子item后树打开
     tiJsonTransformation.setExpanded(true);
 

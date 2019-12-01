@@ -4,5 +4,5 @@ import org.eclipse.swt.custom.StyledText;
 
 public interface ToolItemSelectionHandler {
 
-  void onToolItemSelected(StyledText text);
+  void onToolItemSelected(StyledText styledText);
 }

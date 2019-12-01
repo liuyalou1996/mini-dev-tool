@@ -11,8 +11,6 @@ import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 
-import com.universe.util.CollectionUtils;
-
 public class StyledTextModifyListener implements ExtendedModifyListener {
 
   private static final String EXCLUDED_REGEX = "[\\d\\{\\}\\[\\]:;/\\\\]";
@@ -46,19 +44,11 @@ public class StyledTextModifyListener implements ExtendedModifyListener {
     for (int count = 0; count < text.length(); count++) {
       String str = String.valueOf(text.charAt(count));
       if (StringUtils.isNumeric(str)) {
-        NUMBER_RANGE_LIST.add(new StyleRange(start + count, 1, e.display.getSystemColor(SWT.COLOR_DARK_GREEN), null));
+        styledText.setStyleRange(new StyleRange(start + count, 1, e.display.getSystemColor(SWT.COLOR_DARK_GREEN), null));
       }
 
-      if (!Pattern.matches(EXCLUDED_REGEX, str)) {
-        QUOTATION_RANGE_LIST.add(new StyleRange(start + count, 1, e.display.getSystemColor(SWT.COLOR_DARK_RED), null));
-      }
-
-      if (CollectionUtils.isNotEmpty(NUMBER_RANGE_LIST)) {
-        styledText.replaceStyleRanges(start, e.length, NUMBER_RANGE_LIST.toArray(new StyleRange[0]));
-      }
-
-      if (CollectionUtils.isNotEmpty(QUOTATION_RANGE_LIST)) {
-        styledText.replaceStyleRanges(start, e.length, QUOTATION_RANGE_LIST.toArray(new StyleRange[0]));
+      if (StringUtils.isNotBlank(str) && !Pattern.matches(EXCLUDED_REGEX, str)) {
+        styledText.setStyleRange(new StyleRange(start + count, 1, e.display.getSystemColor(SWT.COLOR_DARK_RED), null));
       }
 
     }

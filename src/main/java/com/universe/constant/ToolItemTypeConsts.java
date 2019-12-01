@@ -6,4 +6,5 @@ public interface ToolItemTypeConsts {
   String COMPRESS_JSONSTR = "2";
   String TRANSFER_MEANING = "3";
   String ELIMINATE_MEANING = "4";
+  String JSON_TO_BEAN = "5";
 }
