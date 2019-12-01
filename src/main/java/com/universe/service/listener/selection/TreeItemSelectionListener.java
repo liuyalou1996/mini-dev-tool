@@ -1,4 +1,4 @@
-package com.universe.listener;
+package com.universe.service.listener.selection;
 
 import java.util.Optional;
 
@@ -12,10 +12,10 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import com.universe.constant.CompTypeConsts;
 import com.universe.constant.SystemConsts;
-import com.universe.ui.composite.GenByJavaComposite;
-import com.universe.ui.composite.GenByXmlComposite;
-import com.universe.ui.composite.JsonFormatComposite;
-import com.universe.ui.composite.JsonToBeanComposite;
+import com.universe.ui.composite.generation.GenByJavaComposite;
+import com.universe.ui.composite.generation.GenByXmlComposite;
+import com.universe.ui.composite.json.JsonFormatComposite;
+import com.universe.ui.composite.json.JsonToBeanComposite;
 
 public class TreeItemSelectionListener extends SelectionAdapter {
 
@@ -54,19 +54,19 @@ public class TreeItemSelectionListener extends SelectionAdapter {
    * @return
    */
   private Composite determineCompByCompType(String compType, Composite parent) {
-    if (CompTypeConsts.COMP_TYPE_JSONFORMAT.equals(compType)) {
+    if (CompTypeConsts.JSON_FORMAT.equals(compType)) {
       return new JsonFormatComposite(parent);
     }
 
-    if (CompTypeConsts.COMP_TYPE_JSONTOBEAN.equals(compType)) {
+    if (CompTypeConsts.JSON_TO_BEAN.equals(compType)) {
       return new JsonToBeanComposite(parent);
     }
 
-    if (CompTypeConsts.COMP_TYPE_GENBYXML.equals(compType)) {
+    if (CompTypeConsts.GENERATE_BY_XML.equals(compType)) {
       return new GenByXmlComposite(parent);
     }
 
-    if (CompTypeConsts.COMP_TYPE_GENBYJAVA.equals(compType)) {
+    if (CompTypeConsts.GENERATE_BY_JAVA.equals(compType)) {
       return new GenByJavaComposite(parent);
     }
 

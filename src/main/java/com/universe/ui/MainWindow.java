@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.universe.constant.CompTypeConsts;
 import com.universe.constant.SystemConsts;
-import com.universe.listener.TreeItemSelectionListener;
+import com.universe.service.listener.selection.TreeItemSelectionListener;
 
 public class MainWindow {
 
@@ -72,8 +72,6 @@ public class MainWindow {
     tabFolder = new CTabFolder(compContent, SWT.BORDER | SWT.CLOSE);
     tabFolder.setTouchEnabled(true);
     tabFolder.setTabHeight(25);
-    tabFolder.setMinimizeVisible(true);
-    tabFolder.setMaximizeVisible(true);
     tabFolder.setSelectionBackground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
 
     // 选项卡初始化后为树添加选择监听器
@@ -99,11 +97,11 @@ public class MainWindow {
 
     TreeItem tiJsonFormat = new TreeItem(tiJsonTransformation, SWT.NONE);
     tiJsonFormat.setText("Json字符串格式化");
-    tiJsonFormat.setData(SystemConsts.COMP_TYPE, CompTypeConsts.COMP_TYPE_JSONFORMAT);
+    tiJsonFormat.setData(SystemConsts.COMP_TYPE, CompTypeConsts.JSON_FORMAT);
 
     TreeItem tiJsonToBean = new TreeItem(tiJsonTransformation, SWT.NONE);
     tiJsonToBean.setText("Json转Bean");
-    tiJsonToBean.setData(SystemConsts.COMP_TYPE, CompTypeConsts.COMP_TYPE_JSONTOBEAN);
+    tiJsonToBean.setData(SystemConsts.COMP_TYPE, CompTypeConsts.JSON_TO_BEAN);
 
     // 初始化子item后树打开
     tiJsonTransformation.setExpanded(true);
@@ -113,11 +111,11 @@ public class MainWindow {
 
     TreeItem tiGenByXml = new TreeItem(tiMybatisGenerator, SWT.NONE);
     tiGenByXml.setText("根据配置文件生成");
-    tiGenByXml.setData(SystemConsts.COMP_TYPE, CompTypeConsts.COMP_TYPE_GENBYXML);
+    tiGenByXml.setData(SystemConsts.COMP_TYPE, CompTypeConsts.GENERATE_BY_XML);
 
     TreeItem tiGenByJava = new TreeItem(tiMybatisGenerator, SWT.NONE);
     tiGenByJava.setText("自定义配置生成");
-    tiGenByJava.setData(SystemConsts.COMP_TYPE, CompTypeConsts.COMP_TYPE_GENBYJAVA);
+    tiGenByJava.setData(SystemConsts.COMP_TYPE, CompTypeConsts.GENERATE_BY_JAVA);
 
     // 初始化子item后树打开
     tiMybatisGenerator.setExpanded(true);
