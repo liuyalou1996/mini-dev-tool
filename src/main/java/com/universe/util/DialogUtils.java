@@ -1,5 +1,8 @@
 package com.universe.util;
 
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
@@ -39,6 +42,12 @@ public class DialogUtils {
     MessageBox mb = new MessageBox(shell, SWT.YES | SWT.NO | SWT.CANCEL | SWT.ICON_QUESTION);
     int result = setDialog(title, message, mb);
     return result;
+  }
+
+  public static String showInputDialog(Shell shell, String title, String message, IInputValidator validator) {
+    InputDialog dialog = new InputDialog(shell, title, message, "", validator);
+    int result = dialog.open();
+    return result == Window.OK ? dialog.getValue() : null;
   }
 
   private static int setDialog(String title, String message, MessageBox mb) {

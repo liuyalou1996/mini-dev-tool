@@ -1,13 +1,142 @@
 package com.universe.service.hanlder.impl;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Shell;
 
 import com.universe.service.hanlder.ToolItemSelectionHandler;
+import com.universe.util.CollectionUtils;
+import com.universe.util.DialogUtils;
+import com.universe.util.JsonUtils;
 
 public class JsonToBeanHandlerImpl implements ToolItemSelectionHandler {
 
+  private String name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   @Override
   public void onToolItemSelected(StyledText styledText) {
+    String jsonStr = styledText.getText();
+    if (StringUtils.isBlank(jsonStr)) {
+      return;
+    }
+
+    try {
+      Map<String, String> fieldMap = new LinkedHashMap<>();
+      Map<String, Object> jsonMap = JsonUtils.toLinkedHashMap(jsonStr);
+      jsonMap.forEach((key, value) -> {
+        fieldMap.put(key, resolveReturnType(value));
+      });
+
+      String beanName = openInputDialog(styledText.getShell());
+      if (StringUtils.isBlank(beanName)) {
+        return;
+      }
+
+      String javaBeanStr = generateJavaBean(beanName, fieldMap);
+      System.out.println(javaBeanStr);
+    } catch (Exception e) {
+      DialogUtils.showErrorDialog(styledText.getShell(), "错误", "json字符串格式不正确!");
+    }
+  }
+
+  private String openInputDialog(Shell shell) {
+    IInputValidator validator = (text) -> {
+      if (StringUtils.isBlank(text)) {
+        return "输入的bean名不能为空格!";
+      }
+
+      String first = text.substring(0, 1);
+      if (!first.equals(first.toUpperCase())) {
+        return "类名首字母必须大写!";
+      }
+
+      return null;
+    };
+
+    return DialogUtils.showInputDialog(shell, "提示", "请输入bean名称:", validator);
+  }
+
+  private String generateJavaBean(String beanName, Map<String, String> fieldMap) {
+    StringBuilder builder = new StringBuilder("public class ");
+    builder.append(beanName);
+    builder.append(" {");
+    builder.append("\n");
+
+    fieldMap.forEach((fieldName, fieldType) -> {
+      builder.append("\t");
+      builder.append("private " + fieldType + " " + fieldName + ";");
+      builder.append("\n\n");
+    });
+
+    // 生成get方法
+    fieldMap.forEach((fieldName, fieldType) -> {
+      String getterMethod = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+      builder.append("\t");
+      builder.append("public " + fieldType + " " + getterMethod + "(){");
+      builder.append("\n");
+      builder.append("\t\t");
+      builder.append("return " + fieldName + ";");
+      builder.append("\n");
+      builder.append("\t}");
+      builder.append("\n\n");
+    });
+
+    // 生成set方法
+    fieldMap.forEach((fieldName, fieldType) -> {
+      String setterMethod = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+      builder.append("\tpublic void " + setterMethod + "(" + fieldType + " " + fieldName + ") {");
+      builder.append("\n");
+      builder.append("\t\t");
+      builder.append("this." + fieldName + " = " + fieldName + ";");
+      builder.append("\n");
+      builder.append("\t}");
+      builder.append("\n\n");
+    });
+
+    // 生成toString方法
+    builder.append("\t@Override\n");
+    builder.append("\tpublic String toString(){\n");
+    builder.append("\t\treturn ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);");
+    builder.append("\n\t}");
+    builder.append("\n}");
+
+    return builder.toString();
+  }
+
+  private String resolveReturnType(Object value) {
+    Class<?> clazz = value.getClass();
+    if (List.class.isInstance(value)) {
+      List<?> list = List.class.cast(value);
+      if (CollectionUtils.isEmpty(list)) {
+        return "List<Object>";
+      }
+
+      Object obj = list.get(0);
+      if (Map.class.isInstance(obj)) {
+        return "List<Map<String, Object>>";
+      }
+
+      return "List<" + obj.getClass().getSimpleName() + ">";
+    }
+
+    if (Map.class.isInstance(value)) {
+      return "Map<String, Object>";
+    }
+
+    return clazz.getSimpleName();
   }
 
 }

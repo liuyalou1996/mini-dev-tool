@@ -73,14 +73,16 @@ public class JsonFormatComposite extends Composite {
 
       @Override
       public void verifyKey(VerifyEvent e) {
+        int keyCode = e.keyCode;
+        if (keyCode == SWT.CTRL || keyCode == SWT.ALT || keyCode == SWT.SHIFT) {
+          return;
+        }
+
         int bits = SWT.CTRL | SWT.ALT | SWT.SHIFT;
         if ((e.stateMask & bits) == 0) {
           String str = styledText.getText();
-          if (!arrayDeque.contains(str)) {
-            arrayDeque.push(str);
-          }
+          arrayDeque.push(str);
         }
-
       }
     });
 

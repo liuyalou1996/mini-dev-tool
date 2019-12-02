@@ -1,5 +1,6 @@
 package com.universe.util;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -94,6 +95,14 @@ public class JsonUtils {
     }
 
     return JSON.parseObject(jsonStr, new TypeReference<Map<String, Object>>() {});
+  }
+  
+  public static LinkedHashMap<String, Object> toLinkedHashMap(String jsonStr) {
+    if (StringUtils.isBlank(jsonStr)) {
+      return null;
+    }
+
+    return JSON.parseObject(jsonStr, new TypeReference<LinkedHashMap<String, Object>>() {});
   }
 
   public static Map<String, Object> javaBeanToMap(Object obj) {

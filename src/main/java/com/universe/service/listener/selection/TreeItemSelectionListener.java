@@ -15,7 +15,6 @@ import com.universe.constant.SystemConsts;
 import com.universe.ui.composite.generation.GenByJavaComposite;
 import com.universe.ui.composite.generation.GenByXmlComposite;
 import com.universe.ui.composite.json.JsonFormatComposite;
-import com.universe.ui.composite.json.JsonToBeanComposite;
 
 public class TreeItemSelectionListener extends SelectionAdapter {
 
@@ -56,10 +55,6 @@ public class TreeItemSelectionListener extends SelectionAdapter {
   private Composite determineCompByCompType(String compType, Composite parent) {
     if (CompTypeConsts.JSON_FORMAT.equals(compType)) {
       return new JsonFormatComposite(parent);
-    }
-
-    if (CompTypeConsts.JSON_TO_BEAN.equals(compType)) {
-      return new JsonToBeanComposite(parent);
     }
 
     if (CompTypeConsts.GENERATE_BY_XML.equals(compType)) {
