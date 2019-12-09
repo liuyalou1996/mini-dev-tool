@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.universe.constant.CompTypeConsts;
 import com.universe.constant.SystemConsts;
 import com.universe.service.listener.selection.TreeItemSelectionListener;
+import com.universe.util.UiUtils;
 
 public class MainWindow {
 
@@ -51,6 +52,8 @@ public class MainWindow {
     shell.setSize(962, 632);
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
+
+    UiUtils.centerShell(shell.getDisplay(), shell);
 
     SashForm sashform = new SashForm(shell, SWT.NONE);
     // 左边树面板
