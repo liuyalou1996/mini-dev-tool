@@ -107,21 +107,31 @@ public class DialogUtils {
     }
   }
 
-  /**
-   * 文件选择或保存对话框
-   *
-   * @param shell 窗体
-   * @return
+  public static String showOpenFileDialog(Shell shell, String[] filterExtensions, String[] filterNames) {
+    return showFileDialog(shell, SWT.OPEN, filterExtensions, filterNames);
+  }
+
+  public static String showSaveFileDialog(Shell shell, String[] filterExtensions, String[] filterNames) {
+    return showFileDialog(shell, SWT.SAVE, filterExtensions, filterNames);
+  }
+
+  /***
+   * 打开文件对话框
+   * @param shell
+   * @param style SWT.OPEN：打开对话框      SWT.SAVE：保存对话框
+   * @param filterExtensions 过滤的文件扩展名
+   * @param filterNames 显示到下拉框中的扩展名的名称
+   * @return 文件路径
    */
-  public static String showFileDialog(Shell shell, int style, String[] extensions, String[] names) {
+  public static String showFileDialog(Shell shell, int style, String[] filterExtensions, String[] filterNames) {
     FileDialog fd = new FileDialog(shell, style);
     String path = System.getProperty("user.home");
     // 设置打开时文件的默认路径
     fd.setFilterPath(path);
     // 设置所打开文件的扩展名
-    fd.setFilterExtensions(extensions);
+    fd.setFilterExtensions(filterExtensions);
     // 设置显示到下拉框中的扩展名的名称
-    fd.setFilterNames(names);
+    fd.setFilterNames(filterNames);
     // 文件的抽象目录
     String file = fd.open();
     return file;

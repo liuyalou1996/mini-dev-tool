@@ -5,6 +5,11 @@ import org.eclipse.swt.custom.StyledText;
 
 import com.universe.service.hanlder.ToolItemSelectionHandler;
 
+/**
+ * 压缩json字符串处理器
+ * @author: liuyalou
+ * @date: 2019年12月10日
+ */
 public class CompressJsonStrHandlerImpl implements ToolItemSelectionHandler {
 
   @Override

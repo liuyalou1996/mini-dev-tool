@@ -5,10 +5,6 @@ import java.util.ArrayDeque;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.custom.VerifyKeyListener;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
@@ -16,9 +12,10 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import com.universe.constant.SystemConsts;
 import com.universe.constant.ToolItemTypeConsts;
-import com.universe.service.listener.modify.StyledTextModifyListener;
+import com.universe.service.listener.key.StyledTextKeyListener;
+import com.universe.service.listener.key.StyledTextVerifyKeyListener;
+import com.universe.service.listener.modify.JsonFormatModifyListener;
 import com.universe.service.listener.selection.ToolItemSelectionListener;
-import com.universe.util.CollectionUtils;
 
 public class JsonFormatComposite extends Composite {
 
@@ -46,47 +43,14 @@ public class JsonFormatComposite extends Composite {
     compTop = new Composite(sashForm, SWT.NONE);
     compTop.setLayout(new FillLayout(SWT.HORIZONTAL));
 
-    styledText = new StyledText(compTop, SWT.BORDER | SWT.WRAP);
-    styledText.addKeyListener(new KeyAdapter() {
+    styledText = new StyledText(compTop, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.H_SCROLL);
 
-      @Override
-      public void keyPressed(KeyEvent e) {
-        // ctrl+a全选
-        if (e.stateMask == SWT.CTRL && e.keyCode == 97) {
-          styledText.selectAll();
-        }
-
-        // ctrl+z撤销
-        if (e.stateMask == SWT.CTRL && e.keyCode == 122) {
-          if (CollectionUtils.isNotEmpty(arrayDeque)) {
-            String str = arrayDeque.pop();
-            styledText.setText(str);
-            styledText.setSelection(str.length());
-          }
-        }
-      }
-
-    });
-
-    // 文本改变前监听器，实现简单撤销功能
-    styledText.addVerifyKeyListener(new VerifyKeyListener() {
-
-      @Override
-      public void verifyKey(VerifyEvent e) {
-        int keyCode = e.keyCode;
-        if (keyCode == SWT.CTRL || keyCode == SWT.ALT || keyCode == SWT.SHIFT) {
-          return;
-        }
-
-        int bits = SWT.CTRL | SWT.ALT | SWT.SHIFT;
-        if ((e.stateMask & bits) == 0) {
-          String str = styledText.getText();
-          arrayDeque.push(str);
-        }
-      }
-    });
-
-    styledText.addExtendedModifyListener(new StyledTextModifyListener(styledText));
+    // 快捷键
+    styledText.addKeyListener(new StyledTextKeyListener(arrayDeque));
+    // 全选撤销
+    styledText.addVerifyKeyListener(new StyledTextVerifyKeyListener(arrayDeque));
+    // 关键字符着色
+    styledText.addExtendedModifyListener(new JsonFormatModifyListener());
 
   }
 
@@ -126,7 +90,7 @@ public class JsonFormatComposite extends Composite {
     tiEliminateMeaning.setToolTipText("去除json字符串中的转义字符");
     tiEliminateMeaning.setText("去除转义");
     tiEliminateMeaning.setData(SystemConsts.TOOL_ITEM_TYPE, ToolItemTypeConsts.ELIMINATE_MEANING);
-    tiTransferMeaning.addSelectionListener(listener);
+    tiEliminateMeaning.addSelectionListener(listener);
 
     new ToolItem(toolBar, SWT.SEPARATOR);
 

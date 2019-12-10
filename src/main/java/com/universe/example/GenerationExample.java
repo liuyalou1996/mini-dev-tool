@@ -19,12 +19,13 @@ public class GenerationExample {
     List<String> warnings = new ArrayList<String>();
 
     String path = GenerationExample.class.getResource("/").getFile();
-    File configFile = new File(path, "mybatis-generator.xml");
+    File configFile = new File(path, "mybatis-generator-template.xml");
     ConfigurationParser cp = new ConfigurationParser(warnings);
     Configuration config = cp.parseConfiguration(configFile);
     DefaultShellCallback callback = new DefaultShellCallback(true);
     MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
     myBatisGenerator.generate(null);
+    System.err.println(configFile);
   }
 
   public static void main(String[] args) throws Exception {

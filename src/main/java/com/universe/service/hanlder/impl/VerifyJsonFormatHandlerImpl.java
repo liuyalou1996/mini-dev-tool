@@ -9,6 +9,11 @@ import com.universe.service.hanlder.ToolItemSelectionHandler;
 import com.universe.util.DialogUtils;
 import com.universe.util.JsonUtils;
 
+/**
+ * json格式校验处理器
+ * @author: liuyalou
+ * @date: 2019年12月10日
+ */
 public class VerifyJsonFormatHandlerImpl implements ToolItemSelectionHandler {
 
   @Override

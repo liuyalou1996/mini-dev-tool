@@ -1,9 +1,13 @@
 package com.universe.service.hanlder.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.swt.custom.StyledText;
@@ -14,6 +18,11 @@ import com.universe.util.CollectionUtils;
 import com.universe.util.DialogUtils;
 import com.universe.util.JsonUtils;
 
+/**
+ * Json转Bean处理器
+ * @author: liuyalou
+ * @date: 2019年12月10日
+ */
 public class JsonToBeanHandlerImpl implements ToolItemSelectionHandler {
 
   private String name;
@@ -34,22 +43,41 @@ public class JsonToBeanHandlerImpl implements ToolItemSelectionHandler {
     }
 
     try {
-      Map<String, String> fieldMap = new LinkedHashMap<>();
-      Map<String, Object> jsonMap = JsonUtils.toLinkedHashMap(jsonStr);
-      jsonMap.forEach((key, value) -> {
-        fieldMap.put(key, resolveReturnType(value));
-      });
-
+      Map<String, String> fieldMap = resolveJsonStr(jsonStr);
       String beanName = openInputDialog(styledText.getShell());
       if (StringUtils.isBlank(beanName)) {
         return;
       }
 
       String javaBeanStr = generateJavaBean(beanName, fieldMap);
-      System.out.println(javaBeanStr);
+      String targetPath = DialogUtils.showDirectoryDialog(styledText.getShell());
+      writeToTargetFile(javaBeanStr, targetPath, beanName);
+
+      DialogUtils.showInformationDialog(styledText.getShell(), "提示", "保存成功!");
+    } catch (IOException e) {
+      DialogUtils.showErrorDialog(styledText.getShell(), "错误", "写入目标文件发生错误!");
     } catch (Exception e) {
       DialogUtils.showErrorDialog(styledText.getShell(), "错误", "json字符串格式不正确!");
     }
+  }
+
+  private Map<String, String> resolveJsonStr(String jsonStr) {
+    Map<String, String> fieldMap = new LinkedHashMap<>();
+    Map<String, Object> jsonMap = JsonUtils.toLinkedHashMap(jsonStr);
+    jsonMap.forEach((field, value) -> {
+      fieldMap.put(field, resolveReturnType(value));
+    });
+
+    return fieldMap;
+  }
+
+  private void writeToTargetFile(String javaBeanStr, String targetPath, String beanName) throws IOException {
+    if (StringUtils.isBlank(targetPath)) {
+      return;
+    }
+
+    String fileName = targetPath + File.separator + beanName + ".java";
+    FileUtils.write(new File(fileName), javaBeanStr, StandardCharsets.UTF_8);
   }
 
   private String openInputDialog(Shell shell) {

@@ -49,7 +49,7 @@ public class MainWindow {
 
   protected void createContents() {
     shell = new Shell();
-    shell.setSize(962, 632);
+    shell.setSize(1100, 700);
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 
