@@ -3,7 +3,7 @@ package com.universe.service.chooser;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.universe.constant.ToolItemTypeConsts;
+import com.universe.common.constant.ToolItemTypeConsts;
 import com.universe.service.hanlder.ToolItemSelectionHandler;
 import com.universe.service.hanlder.impl.CompressJsonStrHandlerImpl;
 import com.universe.service.hanlder.impl.EliminateMeaningHandlerImpl;

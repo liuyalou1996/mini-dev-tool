@@ -13,8 +13,8 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.universe.constant.CompTypeConsts;
-import com.universe.constant.SystemConsts;
+import com.universe.common.constant.CompTypeConsts;
+import com.universe.common.constant.SystemConsts;
 import com.universe.service.listener.selection.TreeItemSelectionListener;
 import com.universe.util.UiUtils;
 

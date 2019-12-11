@@ -11,8 +11,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
-import com.universe.constant.ButtonTypeConsts;
-import com.universe.constant.SystemConsts;
+import com.universe.common.constant.ButtonTypeConsts;
+import com.universe.common.constant.SystemConsts;
 import com.universe.service.listener.key.StyledTextKeyListener;
 import com.universe.service.listener.key.StyledTextVerifyKeyListener;
 import com.universe.service.listener.modify.GenerateCodeModifyListener;
@@ -38,22 +38,22 @@ public class GenByXmlComposite extends Composite {
     Composite compUp = new Composite(sashForm, SWT.BORDER);
 
     txFilePath = new Text(compUp, SWT.BORDER);
-    txFilePath.setBounds(10, 10, 329, 23);
+    txFilePath.setBounds(10, 10, 392, 23);
 
     btnChooseConfigFile = new Button(compUp, SWT.NONE);
-    btnChooseConfigFile.setLocation(367, 8);
+    btnChooseConfigFile.setLocation(431, 8);
     btnChooseConfigFile.setSize(105, 26);
     btnChooseConfigFile.setText("请选择配置文件");
     btnChooseConfigFile.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.CHOOSE_CONFIG_FILE);
 
     btnGen = new Button(compUp, SWT.NONE);
-    btnGen.setLocation(493, 8);
+    btnGen.setLocation(558, 8);
     btnGen.setSize(69, 27);
     btnGen.setText("生成代码");
     btnGen.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.AUTO_GENERATE_CODE);
 
     btnChooseTemplate = new Button(compUp, SWT.NONE);
-    btnChooseTemplate.setBounds(708, 8, 80, 27);
+    btnChooseTemplate.setBounds(731, 8, 80, 27);
     btnChooseTemplate.setText("下载配置模板");
     btnChooseTemplate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.DOWNLOAD_CONFIG_TEMPLATE);
 

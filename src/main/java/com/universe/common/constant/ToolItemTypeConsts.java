@@ -1,4 +1,4 @@
-package com.universe.constant;
+package com.universe.common.constant;
 
 public interface ToolItemTypeConsts {
 

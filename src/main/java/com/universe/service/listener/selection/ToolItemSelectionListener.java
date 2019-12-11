@@ -5,7 +5,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.ToolItem;
 
-import com.universe.constant.SystemConsts;
+import com.universe.common.constant.SystemConsts;
 import com.universe.service.chooser.ToolItemSelectionHandlerChooser;
 import com.universe.service.hanlder.ToolItemSelectionHandler;
 

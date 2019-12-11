@@ -10,8 +10,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-import com.universe.constant.SystemConsts;
-import com.universe.constant.ToolItemTypeConsts;
+import com.universe.common.constant.SystemConsts;
+import com.universe.common.constant.ToolItemTypeConsts;
 import com.universe.service.listener.key.StyledTextKeyListener;
 import com.universe.service.listener.key.StyledTextVerifyKeyListener;
 import com.universe.service.listener.modify.JsonFormatModifyListener;

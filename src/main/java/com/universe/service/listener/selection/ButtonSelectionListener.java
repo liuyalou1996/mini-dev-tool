@@ -23,8 +23,8 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.universe.constant.ButtonTypeConsts;
-import com.universe.constant.SystemConsts;
+import com.universe.common.constant.ButtonTypeConsts;
+import com.universe.common.constant.SystemConsts;
 import com.universe.util.DialogUtils;
 import com.universe.util.IoUtils;
 

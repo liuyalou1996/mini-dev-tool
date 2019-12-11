@@ -10,8 +10,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
 
-import com.universe.constant.CompTypeConsts;
-import com.universe.constant.SystemConsts;
+import com.universe.common.constant.CompTypeConsts;
+import com.universe.common.constant.SystemConsts;
 import com.universe.ui.composite.generation.GenByJavaComposite;
 import com.universe.ui.composite.generation.GenByXmlComposite;
 import com.universe.ui.composite.json.JsonFormatComposite;
