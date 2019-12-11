@@ -7,6 +7,11 @@
     <classPathEntry location="D:\MavenRepository\mysql\mysql-connector-java\8.0.17\mysql-connector-java-8.0.17.jar"/>
 	
     <context id="autoGeneration" targetRuntime="MyBatis3" defaultModelType="conditional">
+		
+		<plugin type="com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin">
+			<property name="domainObjectNameSuffix" value="Dao"/>
+		</plugin>
+		    	
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
@@ -24,24 +29,24 @@
 		
 		<!-- domain object生成配置，生成的java bean字段默认命名规则为数据库列名下划线转驼峰 -->
         <javaModelGenerator targetPackage="com.universe.pojo.domain" 
-        					targetProject="C:\Users\liuyalou\test\minidevtool\src\main\java">
+        					targetProject="C:\Users\Administrator\test\minidevtool\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 		
 		<!-- *Mapper.xml生成配置 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="C:\Users\liuyalou\test\minidevtool\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="C:\Users\Administrator\test\minidevtool\src\main\resources">
             <property name="enableSubPackages" value="true"/>
             <!-- <property name="trimStrings" value="true" /> -->
         </sqlMapGenerator>
 		
 		<!-- *Mapper.java生成配置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.universe.mapper" 
-        									  targetProject="C:\Users\liuyalou\test\minidevtool\src\main\java">
+        									  targetProject="C:\Users\Administrator\test\minidevtool\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 		<!-- 相关映射配置 -->
-        <table tableName="tbl_user" domainObjectName="UserDo" mapperName="UserMapper" 
+        <table tableName="tbl_user" 
         	   enableCountByExample="false" 
         	   enableDeleteByExample="false" 
                enableInsert="false" 

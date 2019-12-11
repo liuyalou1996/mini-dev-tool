@@ -39,6 +39,8 @@ public class GenerationExample {
   }
 
   public static void generateByCode() throws Exception {
+    String userHome = System.getProperty("user.home");
+    String projectPath = userHome + File.separator + "test" + File.separator + "minidevtool" + File.separator;
     List<String> warnings = new ArrayList<String>();
 
     Context context = new Context(ModelType.CONDITIONAL);
@@ -46,7 +48,8 @@ public class GenerationExample {
     context.setTargetRuntime("MyBatis3");
 
     PluginConfiguration pluginConfiguration = new PluginConfiguration();
-    pluginConfiguration.setConfigurationType("com.universe.common.plugin.UnderscoreToCamelCaseRenamingPlugin");
+    pluginConfiguration.setConfigurationType("com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin");
+    pluginConfiguration.addProperty("domainObjectNameSuffix", "Dao");
 
     CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
     commentGeneratorConfiguration.addProperty("suppressAllComments", "true");
@@ -62,24 +65,22 @@ public class GenerationExample {
     javaTypeResolverConfiguration.addProperty("forceBigDecimals", "false");
 
     JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
-    javaModelGeneratorConfiguration.setTargetProject("C:\\Users\\liuyalou\\test\\minidevtool\\src\\main\\java");
+    javaModelGeneratorConfiguration.setTargetProject(projectPath + "src\\main\\java");
     javaModelGeneratorConfiguration.setTargetPackage("com.universe.pojo.domain");
     javaModelGeneratorConfiguration.addProperty("enableSubPackages", "false");
 
     SqlMapGeneratorConfiguration sqlMapGeneratorConfiguration = new SqlMapGeneratorConfiguration();
-    sqlMapGeneratorConfiguration.setTargetProject("C:\\Users\\liuyalou\\test\\minidevtool\\src\\main\\resources");
+    sqlMapGeneratorConfiguration.setTargetProject(projectPath + "src\\main\\resources");
     sqlMapGeneratorConfiguration.setTargetPackage("mapper");
 
     JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = new JavaClientGeneratorConfiguration();
     javaClientGeneratorConfiguration.setConfigurationType("XMLMAPPER");
-    javaClientGeneratorConfiguration.setTargetProject("C:\\Users\\liuyalou\\test\\minidevtool\\src\\main\\java");
+    javaClientGeneratorConfiguration.setTargetProject(projectPath + "src\\main\\java");
     javaClientGeneratorConfiguration.setTargetPackage("com.universe.mapper");
     javaClientGeneratorConfiguration.addProperty("enableSubPackages", "true");
 
     TableConfiguration tableConfiguration = new TableConfiguration(context);
     tableConfiguration.setTableName("tbl_user");
-    // tableConfiguration.setDomainObjectName("UserDo");
-    // tableConfiguration.setMapperName("UserMapper");
     tableConfiguration.setCountByExampleStatementEnabled(false);
     tableConfiguration.setDeleteByExampleStatementEnabled(false);
     tableConfiguration.setSelectByExampleStatementEnabled(false);
