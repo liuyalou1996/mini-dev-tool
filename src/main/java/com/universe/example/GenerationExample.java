@@ -19,6 +19,8 @@ import org.mybatis.generator.config.TableConfiguration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+import com.universe.mbg.callback.MbgProgressCallback;
+
 /**
  * @author 刘亚楼
  * @date 2019/11/4
@@ -100,11 +102,11 @@ public class GenerationExample {
     config.addContext(context);
     DefaultShellCallback callback = new DefaultShellCallback(true);
     MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
-    myBatisGenerator.generate(null);
+    myBatisGenerator.generate(new MbgProgressCallback());
   }
 
   public static void main(String[] args) throws Exception {
-    generateByCode();
+    generateByXml();
   }
 
 }

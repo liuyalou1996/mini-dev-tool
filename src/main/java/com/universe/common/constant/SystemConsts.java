@@ -7,4 +7,6 @@ public interface SystemConsts {
   String TOOL_ITEM_TYPE = "toolItemType";
 
   String BUTTON_TYPE = "buttonType";
+
+  String ATTACHED_TAB_ITEM = "attachedTabItem";
 }

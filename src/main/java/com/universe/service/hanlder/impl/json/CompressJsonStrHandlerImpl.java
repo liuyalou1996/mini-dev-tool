@@ -1,4 +1,4 @@
-package com.universe.service.hanlder.impl;
+package com.universe.service.hanlder.impl.json;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.custom.StyledText;

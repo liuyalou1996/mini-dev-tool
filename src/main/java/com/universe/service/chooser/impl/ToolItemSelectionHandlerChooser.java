@@ -1,17 +1,19 @@
-package com.universe.service.chooser;
+package com.universe.service.chooser.impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.universe.common.constant.ToolItemTypeConsts;
+import com.universe.service.chooser.SelectionHandlerChooser;
+import com.universe.service.hanlder.SelectionHandler;
 import com.universe.service.hanlder.ToolItemSelectionHandler;
-import com.universe.service.hanlder.impl.CompressJsonStrHandlerImpl;
-import com.universe.service.hanlder.impl.EliminateMeaningHandlerImpl;
-import com.universe.service.hanlder.impl.JsonToBeanHandlerImpl;
-import com.universe.service.hanlder.impl.TransferMeaningHanlderImpl;
-import com.universe.service.hanlder.impl.VerifyJsonFormatHandlerImpl;
+import com.universe.service.hanlder.impl.json.CompressJsonStrHandlerImpl;
+import com.universe.service.hanlder.impl.json.EliminateMeaningHandlerImpl;
+import com.universe.service.hanlder.impl.json.JsonToBeanHandlerImpl;
+import com.universe.service.hanlder.impl.json.TransferMeaningHanlderImpl;
+import com.universe.service.hanlder.impl.json.VerifyJsonFormatHandlerImpl;
 
-public class ToolItemSelectionHandlerChooser {
+public class ToolItemSelectionHandlerChooser implements SelectionHandlerChooser {
 
   private static Map<String, ToolItemSelectionHandler> handlerMap = new HashMap<>();
 
@@ -23,7 +25,8 @@ public class ToolItemSelectionHandlerChooser {
     handlerMap.put(ToolItemTypeConsts.JSON_TO_BEAN, new JsonToBeanHandlerImpl());
   }
 
-  public ToolItemSelectionHandler chooseSelectionHandler(String toolItemType) {
+  @Override
+  public SelectionHandler chooseSelectionHandler(String toolItemType) {
     return handlerMap.get(toolItemType);
   }
 }

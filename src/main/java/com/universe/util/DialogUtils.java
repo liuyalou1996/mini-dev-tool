@@ -1,7 +1,10 @@
 package com.universe.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -107,27 +110,32 @@ public class DialogUtils {
     }
   }
 
-  public static String showOpenFileDialog(Shell shell, String[] filterExtensions, String[] filterNames) {
-    return showFileDialog(shell, SWT.OPEN, filterExtensions, filterNames);
+  public static String showOpenFileDialog(Shell shell, String filterPath, String[] filterExtensions, String[] filterNames) {
+    return showFileDialog(shell, SWT.OPEN, filterPath, filterExtensions, filterNames);
   }
 
-  public static String showSaveFileDialog(Shell shell, String[] filterExtensions, String[] filterNames) {
-    return showFileDialog(shell, SWT.SAVE, filterExtensions, filterNames);
+  public static String showSaveFileDialog(Shell shell, String filterPath, String[] filterExtensions, String[] filterNames) {
+    return showFileDialog(shell, SWT.SAVE, filterPath, filterExtensions, filterNames);
   }
 
-  /***
+  /**
    * 打开文件对话框
    * @param shell
    * @param style SWT.OPEN：打开对话框      SWT.SAVE：保存对话框
+   * @param filterPath 默认对话框打开路径
    * @param filterExtensions 过滤的文件扩展名
    * @param filterNames 显示到下拉框中的扩展名的名称
-   * @return 文件路径
+   * @return
    */
-  public static String showFileDialog(Shell shell, int style, String[] filterExtensions, String[] filterNames) {
+  public static String showFileDialog(Shell shell, int style, String filterPath, String[] filterExtensions, String[] filterNames) {
     FileDialog fd = new FileDialog(shell, style);
-    String path = System.getProperty("user.home");
+
     // 设置打开时文件的默认路径
-    fd.setFilterPath(path);
+    fd.setFilterPath(filterPath);
+    if (StringUtils.isBlank(filterPath)) {
+      fd.setFilterPath(System.getProperty("user.home"));
+    }
+    
     // 设置所打开文件的扩展名
     fd.setFilterExtensions(filterExtensions);
     // 设置显示到下拉框中的扩展名的名称
@@ -154,5 +162,21 @@ public class DialogUtils {
     // 打开窗口，返回用户选择的文件目录
     String fileDir = dd.open();
     return fileDir;
+  }
+
+  /**
+   * 进度条对话框
+   * @param shell
+   * @param fork
+   * @param cancelable
+   * @param runnbale
+   * @return
+   * @throws Exception
+   */
+  public static ProgressMonitorDialog showProgressDialog(Shell shell, boolean fork, boolean cancelable, IRunnableWithProgress runnbale)
+      throws Exception {
+    ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(shell);
+    progressDialog.run(fork, cancelable, runnbale);
+    return progressDialog;
   }
 }

@@ -1,4 +1,4 @@
-package com.universe.service.hanlder.impl;
+package com.universe.service.hanlder.impl.json;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.custom.StyledText;
@@ -6,11 +6,11 @@ import org.eclipse.swt.custom.StyledText;
 import com.universe.service.hanlder.ToolItemSelectionHandler;
 
 /**
- * 转义json字符串处理器
+ * 消除转义处理器
  * @author: liuyalou
  * @date: 2019年12月10日
  */
-public class TransferMeaningHanlderImpl implements ToolItemSelectionHandler {
+public class EliminateMeaningHandlerImpl implements ToolItemSelectionHandler {
 
   @Override
   public void onToolItemSelected(StyledText styledText) {
@@ -19,8 +19,7 @@ public class TransferMeaningHanlderImpl implements ToolItemSelectionHandler {
       return;
     }
 
-    styledText.setText(jsonStr.replace("\"", "\\\""));
-
+    styledText.setText(jsonStr.replace("\\\"", "\""));
   }
 
 }

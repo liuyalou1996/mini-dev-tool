@@ -16,4 +16,9 @@ public interface ButtonTypeConsts {
    * 下载配置模板
    */
   String DOWNLOAD_CONFIG_TEMPLATE = "3";
+
+  /**
+   * 导出配置
+   */
+  String EXPORT_CONFIG = "4";
 }

@@ -6,7 +6,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.ToolItem;
 
 import com.universe.common.constant.SystemConsts;
-import com.universe.service.chooser.ToolItemSelectionHandlerChooser;
+import com.universe.service.chooser.SelectionHandlerChooser;
+import com.universe.service.chooser.impl.ToolItemSelectionHandlerChooser;
 import com.universe.service.hanlder.ToolItemSelectionHandler;
 
 /**
@@ -16,7 +17,7 @@ import com.universe.service.hanlder.ToolItemSelectionHandler;
  */
 public class ToolItemSelectionListener extends SelectionAdapter {
 
-  private static final ToolItemSelectionHandlerChooser HANLDER_CHOOSER = new ToolItemSelectionHandlerChooser();
+  private static final SelectionHandlerChooser HANLDER_CHOOSER = new ToolItemSelectionHandlerChooser();
 
   private StyledText text;
 
@@ -29,7 +30,7 @@ public class ToolItemSelectionListener extends SelectionAdapter {
     ToolItem toolItem = (ToolItem) e.widget;
     String toolItemType = (String) toolItem.getData(SystemConsts.TOOL_ITEM_TYPE);
 
-    ToolItemSelectionHandler handler = HANLDER_CHOOSER.chooseSelectionHandler(toolItemType);
+    ToolItemSelectionHandler handler = (ToolItemSelectionHandler) HANLDER_CHOOSER.chooseSelectionHandler(toolItemType);
     handler.onToolItemSelected(text);
   }
 

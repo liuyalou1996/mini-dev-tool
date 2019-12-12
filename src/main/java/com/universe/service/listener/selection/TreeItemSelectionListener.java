@@ -41,8 +41,11 @@ public class TreeItemSelectionListener extends SelectionAdapter {
       CTabItem tabItem = new CTabItem(tabFolder, SWT.NONE);
       tabItem.setText(treeItem.getText());
       tabItem.setControl(comp);
+      // 设置面板类型用于判断是否已经打开过
       tabItem.setData(compType);
       tabFolder.setSelection(tabItem);
+      // 绑定选项卡
+      composite.setData(SystemConsts.ATTACHED_TAB_ITEM, tabItem);
     });
   }
 

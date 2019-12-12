@@ -14,7 +14,7 @@ import com.universe.common.constant.SystemConsts;
 import com.universe.common.constant.ToolItemTypeConsts;
 import com.universe.service.listener.key.StyledTextKeyListener;
 import com.universe.service.listener.key.StyledTextVerifyKeyListener;
-import com.universe.service.listener.modify.JsonFormatModifyListener;
+import com.universe.service.listener.modify.JsonFormatExtendedModifyListener;
 import com.universe.service.listener.selection.ToolItemSelectionListener;
 
 public class JsonFormatComposite extends Composite {
@@ -50,7 +50,7 @@ public class JsonFormatComposite extends Composite {
     // 全选撤销
     styledText.addVerifyKeyListener(new StyledTextVerifyKeyListener(arrayDeque));
     // 关键字符着色
-    styledText.addExtendedModifyListener(new JsonFormatModifyListener());
+    styledText.addExtendedModifyListener(new JsonFormatExtendedModifyListener());
 
   }
 
