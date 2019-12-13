@@ -5,17 +5,16 @@ import java.util.Map;
 
 import com.universe.common.constant.ToolItemTypeConsts;
 import com.universe.service.chooser.SelectionHandlerChooser;
-import com.universe.service.hanlder.SelectionHandler;
-import com.universe.service.hanlder.ToolItemSelectionHandler;
+import com.universe.service.hanlder.JsonFormatToolItemSelectionHandler;
 import com.universe.service.hanlder.impl.json.CompressJsonStrHandlerImpl;
 import com.universe.service.hanlder.impl.json.EliminateMeaningHandlerImpl;
 import com.universe.service.hanlder.impl.json.JsonToBeanHandlerImpl;
 import com.universe.service.hanlder.impl.json.TransferMeaningHanlderImpl;
 import com.universe.service.hanlder.impl.json.VerifyJsonFormatHandlerImpl;
 
-public class ToolItemSelectionHandlerChooser implements SelectionHandlerChooser {
+public class JsonFormatToolItemSelectionHandlerChooser implements SelectionHandlerChooser<JsonFormatToolItemSelectionHandler> {
 
-  private static Map<String, ToolItemSelectionHandler> handlerMap = new HashMap<>();
+  private static Map<String, JsonFormatToolItemSelectionHandler> handlerMap = new HashMap<>();
 
   static {
     handlerMap.put(ToolItemTypeConsts.VERIFY_JSON_FORMAT, new VerifyJsonFormatHandlerImpl());
@@ -26,7 +25,7 @@ public class ToolItemSelectionHandlerChooser implements SelectionHandlerChooser 
   }
 
   @Override
-  public SelectionHandler chooseSelectionHandler(String toolItemType) {
+  public JsonFormatToolItemSelectionHandler chooseSelectionHandler(String toolItemType) {
     return handlerMap.get(toolItemType);
   }
 }

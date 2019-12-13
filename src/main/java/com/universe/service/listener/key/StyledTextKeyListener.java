@@ -7,7 +7,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
-import com.universe.util.CollectionUtils;
+import com.universe.common.util.CollectionUtils;
 
 public class StyledTextKeyListener extends KeyAdapter {
 

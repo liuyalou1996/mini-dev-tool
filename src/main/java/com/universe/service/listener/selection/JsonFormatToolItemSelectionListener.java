@@ -7,21 +7,22 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import com.universe.common.constant.SystemConsts;
 import com.universe.service.chooser.SelectionHandlerChooser;
-import com.universe.service.chooser.impl.ToolItemSelectionHandlerChooser;
-import com.universe.service.hanlder.ToolItemSelectionHandler;
+import com.universe.service.chooser.impl.JsonFormatToolItemSelectionHandlerChooser;
+import com.universe.service.hanlder.JsonFormatToolItemSelectionHandler;
 
 /**
  * 工具条选择监听器
  * @author liuyalou
  * @date 2019年12月1日
  */
-public class ToolItemSelectionListener extends SelectionAdapter {
+public class JsonFormatToolItemSelectionListener extends SelectionAdapter {
 
-  private static final SelectionHandlerChooser HANLDER_CHOOSER = new ToolItemSelectionHandlerChooser();
+  private static final SelectionHandlerChooser<JsonFormatToolItemSelectionHandler> HANLDER_CHOOSER =
+      new JsonFormatToolItemSelectionHandlerChooser();
 
   private StyledText text;
 
-  public ToolItemSelectionListener(StyledText text) {
+  public JsonFormatToolItemSelectionListener(StyledText text) {
     this.text = text;
   }
 
@@ -30,7 +31,7 @@ public class ToolItemSelectionListener extends SelectionAdapter {
     ToolItem toolItem = (ToolItem) e.widget;
     String toolItemType = (String) toolItem.getData(SystemConsts.TOOL_ITEM_TYPE);
 
-    ToolItemSelectionHandler handler = (ToolItemSelectionHandler) HANLDER_CHOOSER.chooseSelectionHandler(toolItemType);
+    JsonFormatToolItemSelectionHandler handler = HANLDER_CHOOSER.chooseSelectionHandler(toolItemType);
     handler.onToolItemSelected(text);
   }
 

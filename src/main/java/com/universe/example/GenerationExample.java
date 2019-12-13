@@ -19,8 +19,6 @@ import org.mybatis.generator.config.TableConfiguration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
-import com.universe.mbg.callback.MbgProgressCallback;
-
 /**
  * @author 刘亚楼
  * @date 2019/11/4
@@ -52,6 +50,9 @@ public class GenerationExample {
     PluginConfiguration pluginConfiguration = new PluginConfiguration();
     pluginConfiguration.setConfigurationType("com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin");
     pluginConfiguration.addProperty("domainObjectNameSuffix", "Dao");
+
+    PluginConfiguration toStringPluginConfig = new PluginConfiguration();
+    toStringPluginConfig.setConfigurationType("com.universe.mbg.plugin.CommonsLangToStringPlugin");
 
     CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
     commentGeneratorConfiguration.addProperty("suppressAllComments", "true");
@@ -89,6 +90,7 @@ public class GenerationExample {
     tableConfiguration.setUpdateByExampleStatementEnabled(false);
 
     context.addPluginConfiguration(pluginConfiguration);
+    context.addPluginConfiguration(toStringPluginConfig);
     context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
     context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
     context.setJavaTypeResolverConfiguration(javaTypeResolverConfiguration);
@@ -102,11 +104,11 @@ public class GenerationExample {
     config.addContext(context);
     DefaultShellCallback callback = new DefaultShellCallback(true);
     MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
-    myBatisGenerator.generate(new MbgProgressCallback());
+    myBatisGenerator.generate(null);
   }
 
   public static void main(String[] args) throws Exception {
-    generateByXml();
+    generateByCode();
   }
 
 }

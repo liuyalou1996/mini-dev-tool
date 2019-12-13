@@ -1,4 +1,4 @@
-package com.universe.util;
+package com.universe.common.util;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;

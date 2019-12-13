@@ -1,4 +1,4 @@
-package com.universe.util;
+package com.universe.common.util;
 
 import java.util.Collection;
 import java.util.Map;

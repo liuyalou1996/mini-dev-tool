@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import com.universe.common.constant.CompTypeConsts;
 import com.universe.common.constant.SystemConsts;
+import com.universe.common.util.UiUtils;
 import com.universe.service.listener.selection.TreeItemSelectionListener;
-import com.universe.util.UiUtils;
 
 public class MainWindow {
 
@@ -49,7 +49,7 @@ public class MainWindow {
 
   protected void createContents() {
     shell = new Shell();
-    shell.setSize(1100, 700);
+    shell.setSize(1126, 705);
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 

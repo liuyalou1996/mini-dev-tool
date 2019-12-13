@@ -13,17 +13,17 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Shell;
 
-import com.universe.service.hanlder.ToolItemSelectionHandler;
-import com.universe.util.CollectionUtils;
-import com.universe.util.DialogUtils;
-import com.universe.util.JsonUtils;
+import com.universe.common.util.CollectionUtils;
+import com.universe.common.util.DialogUtils;
+import com.universe.common.util.JsonUtils;
+import com.universe.service.hanlder.JsonFormatToolItemSelectionHandler;
 
 /**
  * Json转Bean处理器
  * @author: liuyalou
  * @date: 2019年12月10日
  */
-public class JsonToBeanHandlerImpl implements ToolItemSelectionHandler {
+public class JsonToBeanHandlerImpl implements JsonFormatToolItemSelectionHandler {
 
   private String name;
 

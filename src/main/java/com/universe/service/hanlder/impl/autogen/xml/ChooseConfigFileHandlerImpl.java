@@ -1,4 +1,4 @@
-package com.universe.service.hanlder.impl.autogen;
+package com.universe.service.hanlder.impl.autogen.xml;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Text;
 
-import com.universe.service.hanlder.ButtonSelectionHandler;
-import com.universe.util.DialogUtils;
+import com.universe.common.util.DialogUtils;
+import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class ChooseConfigFileHandlerImpl implements ButtonSelectionHandler {
+public class ChooseConfigFileHandlerImpl implements GenByXmlButtonSelectionHandler {
 
   @Override
   public void onButtonSelected(Text txConfigFilePath, StyledText txConfigContent) {

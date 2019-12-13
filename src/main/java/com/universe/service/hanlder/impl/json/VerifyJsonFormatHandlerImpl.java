@@ -5,16 +5,16 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.custom.StyledText;
 
-import com.universe.service.hanlder.ToolItemSelectionHandler;
-import com.universe.util.DialogUtils;
-import com.universe.util.JsonUtils;
+import com.universe.common.util.DialogUtils;
+import com.universe.common.util.JsonUtils;
+import com.universe.service.hanlder.JsonFormatToolItemSelectionHandler;
 
 /**
  * json格式校验处理器
  * @author: liuyalou
  * @date: 2019年12月10日
  */
-public class VerifyJsonFormatHandlerImpl implements ToolItemSelectionHandler {
+public class VerifyJsonFormatHandlerImpl implements JsonFormatToolItemSelectionHandler {
 
   @Override
   public void onToolItemSelected(StyledText text) {

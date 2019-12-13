@@ -1,4 +1,4 @@
-package com.universe.util;
+package com.universe.common.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.IInputValidator;
@@ -123,8 +123,8 @@ public class DialogUtils {
    * @param shell
    * @param style SWT.OPEN：打开对话框      SWT.SAVE：保存对话框
    * @param filterPath 默认对话框打开路径
-   * @param filterExtensions 过滤的文件扩展名
-   * @param filterNames 显示到下拉框中的扩展名的名称
+   * @param filterExtensions 过滤的文件扩展名，如："*.xml"
+   * @param filterNames 显示到下拉框中的扩展名的名称，如："Xml Files(*.xml)"
    * @return
    */
   public static String showFileDialog(Shell shell, int style, String filterPath, String[] filterExtensions, String[] filterNames) {
@@ -135,7 +135,7 @@ public class DialogUtils {
     if (StringUtils.isBlank(filterPath)) {
       fd.setFilterPath(System.getProperty("user.home"));
     }
-    
+
     // 设置所打开文件的扩展名
     fd.setFilterExtensions(filterExtensions);
     // 设置显示到下拉框中的扩展名的名称

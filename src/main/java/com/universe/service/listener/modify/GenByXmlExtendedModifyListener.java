@@ -10,7 +10,7 @@ import org.eclipse.swt.custom.ExtendedModifyListener;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 
-public class GenerateCodeExtendedModifyListener implements ExtendedModifyListener {
+public class GenByXmlExtendedModifyListener implements ExtendedModifyListener {
 
   private static final List<StyleRange> QUOTATION_RANGE_LIST = new ArrayList<>();
 

@@ -8,24 +8,18 @@ import org.eclipse.swt.widgets.Text;
 
 import com.universe.common.constant.SystemConsts;
 import com.universe.service.chooser.SelectionHandlerChooser;
-import com.universe.service.chooser.impl.ButtonSelectionHandlerChooser;
-import com.universe.service.hanlder.ButtonSelectionHandler;
+import com.universe.service.chooser.impl.GenByXmlButtonSelectionHandlerChooser;
+import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class ButtonSelectionListener extends SelectionAdapter {
+public class GenByXmlButtonSelectionListener extends SelectionAdapter {
 
-  private static final SelectionHandlerChooser HANDLER_CHOOSER = new ButtonSelectionHandlerChooser();
+  private static final SelectionHandlerChooser<GenByXmlButtonSelectionHandler> HANDLER_CHOOSER =
+      new GenByXmlButtonSelectionHandlerChooser();
 
   private Text txFilePath;
   private StyledText txFileContent;
 
-  public ButtonSelectionListener() {
-  }
-
-  public ButtonSelectionListener(StyledText txFileContent) {
-    this.txFileContent = txFileContent;
-  }
-
-  public ButtonSelectionListener(Text txFilePath, StyledText txFileContent) {
+  public GenByXmlButtonSelectionListener(Text txFilePath, StyledText txFileContent) {
     this.txFilePath = txFilePath;
     this.txFileContent = txFileContent;
   }
@@ -35,7 +29,7 @@ public class ButtonSelectionListener extends SelectionAdapter {
     Button button = (Button) e.widget;
     String btnType = (String) button.getData(SystemConsts.BUTTON_TYPE);
 
-    ButtonSelectionHandler hanlder = (ButtonSelectionHandler) HANDLER_CHOOSER.chooseSelectionHandler(btnType);
+    GenByXmlButtonSelectionHandler hanlder = HANDLER_CHOOSER.chooseSelectionHandler(btnType);
     hanlder.onButtonSelected(txFilePath, txFileContent);
   }
 

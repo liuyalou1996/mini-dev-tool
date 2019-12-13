@@ -15,7 +15,7 @@ import com.universe.common.constant.ToolItemTypeConsts;
 import com.universe.service.listener.key.StyledTextKeyListener;
 import com.universe.service.listener.key.StyledTextVerifyKeyListener;
 import com.universe.service.listener.modify.JsonFormatExtendedModifyListener;
-import com.universe.service.listener.selection.ToolItemSelectionListener;
+import com.universe.service.listener.selection.JsonFormatToolItemSelectionListener;
 
 public class JsonFormatComposite extends Composite {
 
@@ -60,7 +60,7 @@ public class JsonFormatComposite extends Composite {
 
     toolBar = new ToolBar(compDown, SWT.FLAT | SWT.WRAP);
 
-    ToolItemSelectionListener listener = new ToolItemSelectionListener(styledText);
+    JsonFormatToolItemSelectionListener listener = new JsonFormatToolItemSelectionListener(styledText);
 
     ToolItem tiVerify = new ToolItem(toolBar, SWT.NONE);
     tiVerify.setToolTipText("校验是否是json格式");

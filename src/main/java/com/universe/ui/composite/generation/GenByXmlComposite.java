@@ -15,9 +15,9 @@ import com.universe.common.constant.ButtonTypeConsts;
 import com.universe.common.constant.SystemConsts;
 import com.universe.service.listener.key.StyledTextKeyListener;
 import com.universe.service.listener.key.StyledTextVerifyKeyListener;
-import com.universe.service.listener.modify.GenerateCodeExtendedModifyListener;
+import com.universe.service.listener.modify.GenByXmlExtendedModifyListener;
 import com.universe.service.listener.modify.StyledTextModifyListener;
-import com.universe.service.listener.selection.ButtonSelectionListener;
+import com.universe.service.listener.selection.GenByXmlButtonSelectionListener;
 
 public class GenByXmlComposite extends Composite {
 
@@ -46,23 +46,23 @@ public class GenByXmlComposite extends Composite {
     btnChooseConfigFile.setLocation(431, 8);
     btnChooseConfigFile.setSize(105, 26);
     btnChooseConfigFile.setText("请选择配置文件");
-    btnChooseConfigFile.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.CHOOSE_CONFIG_FILE);
+    btnChooseConfigFile.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.CHOOSE_CONFIG_FILE);
 
     btnGen = new Button(compUp, SWT.NONE);
     btnGen.setLocation(549, 8);
     btnGen.setSize(69, 27);
     btnGen.setText("生成代码");
-    btnGen.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.AUTO_GENERATE_CODE);
+    btnGen.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.AUTO_GENERATE_BY_XML);
 
     btnChooseTemplate = new Button(compUp, SWT.NONE);
     btnChooseTemplate.setBounds(667, 8, 80, 27);
     btnChooseTemplate.setText("下载配置模板");
-    btnChooseTemplate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.DOWNLOAD_CONFIG_TEMPLATE);
+    btnChooseTemplate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.DOWNLOAD_CONFIG_TEMPLATE);
 
     btnExport = new Button(compUp, SWT.NONE);
     btnExport.setBounds(756, 8, 80, 27);
     btnExport.setText("导出配置");
-    btnExport.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.EXPORT_CONFIG);
+    btnExport.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.EXPORT_CONFIG);
 
     Composite compDown = new Composite(sashForm, SWT.NONE);
     compDown.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -74,15 +74,17 @@ public class GenByXmlComposite extends Composite {
     // 全选撤销
     txFileContent.addVerifyKeyListener(new StyledTextVerifyKeyListener(arrayDeque));
     // 关键字着色
-    txFileContent.addExtendedModifyListener(new GenerateCodeExtendedModifyListener());
+    txFileContent.addExtendedModifyListener(new GenByXmlExtendedModifyListener());
     // 文本改变加*号
     txFileContent.addModifyListener(new StyledTextModifyListener(this));
 
     // 按钮添加选择监听器
-    btnChooseConfigFile.addSelectionListener(new ButtonSelectionListener(txFilePath, txFileContent));
-    btnGen.addSelectionListener(new ButtonSelectionListener(txFileContent));
-    btnChooseTemplate.addSelectionListener(new ButtonSelectionListener());
-    btnExport.addSelectionListener(new ButtonSelectionListener(txFilePath, txFileContent));
+    GenByXmlButtonSelectionListener selectionListener = new GenByXmlButtonSelectionListener(txFilePath, txFileContent);
+    btnChooseConfigFile.addSelectionListener(selectionListener);
+    btnGen.addSelectionListener(selectionListener);
+    btnChooseTemplate.addSelectionListener(selectionListener);
+    btnExport.addSelectionListener(selectionListener);
+
     sashForm.setWeights(new int[] { 40, 479 });
   }
 

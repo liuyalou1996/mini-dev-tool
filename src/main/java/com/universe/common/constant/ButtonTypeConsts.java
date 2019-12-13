@@ -2,23 +2,46 @@ package com.universe.common.constant;
 
 public interface ButtonTypeConsts {
 
-  /**
-   * 选择配置文件
-   */
-  String CHOOSE_CONFIG_FILE = "1";
+  interface GenByXml {
 
-  /**
-   * 自动生成代码
-   */
-  String AUTO_GENERATE_CODE = "2";
+    /**
+     * 选择配置文件
+     */
+    String CHOOSE_CONFIG_FILE = "1";
 
-  /**
-   * 下载配置模板
-   */
-  String DOWNLOAD_CONFIG_TEMPLATE = "3";
+    /**
+     * 根据xml自动生成
+     */
+    String AUTO_GENERATE_BY_XML = "2";
 
-  /**
-   * 导出配置
-   */
-  String EXPORT_CONFIG = "4";
+    /**
+     * 下载配置模板
+     */
+    String DOWNLOAD_CONFIG_TEMPLATE = "3";
+
+    /**
+     * 导出配置
+     */
+    String EXPORT_CONFIG = "4";
+  }
+
+  interface GenByJava {
+
+    /**
+     * 选择jdbc驱动包
+     */
+    String CHOOSE_DRIVER = "5";
+
+    /**
+     * 选择项目路径
+     */
+    String CHOOSE_TARGET_PROJECT = "6";
+
+    /**
+     * 根据自定义配置生成
+     */
+    String AUTO_GENERATE_BY_JAVA = "7";
+
+  }
+
 }

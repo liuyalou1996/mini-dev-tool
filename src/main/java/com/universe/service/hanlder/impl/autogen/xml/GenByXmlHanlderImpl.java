@@ -1,4 +1,4 @@
-package com.universe.service.hanlder.impl.autogen;
+package com.universe.service.hanlder.impl.autogen.xml;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
@@ -16,13 +16,13 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.universe.common.util.DialogUtils;
 import com.universe.mbg.runnable.MbgProgressRunnable;
-import com.universe.service.hanlder.ButtonSelectionHandler;
-import com.universe.util.DialogUtils;
+import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class AutoGenerateCodeHanlderImpl implements ButtonSelectionHandler {
+public class GenByXmlHanlderImpl implements GenByXmlButtonSelectionHandler {
 
-  private static Logger LOGGER = LoggerFactory.getLogger(AutoGenerateCodeHanlderImpl.class);
+  private static Logger LOGGER = LoggerFactory.getLogger(GenByXmlHanlderImpl.class);
 
   @Override
   public void onButtonSelected(Text txFilePath, StyledText txFileContent) {

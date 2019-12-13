@@ -1,4 +1,4 @@
-package com.universe.util;
+package com.universe.common.util;
 
 import java.util.LinkedHashMap;
 import java.util.List;

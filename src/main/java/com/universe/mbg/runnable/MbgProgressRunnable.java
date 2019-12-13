@@ -9,8 +9,8 @@ import org.mybatis.generator.api.MyBatisGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.universe.common.util.DialogUtils;
 import com.universe.mbg.callback.MbgProgressCallback;
-import com.universe.util.DialogUtils;
 
 public class MbgProgressRunnable implements IRunnableWithProgress {
 

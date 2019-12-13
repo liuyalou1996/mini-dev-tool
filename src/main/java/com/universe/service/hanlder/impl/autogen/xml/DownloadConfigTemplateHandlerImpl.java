@@ -1,4 +1,4 @@
-package com.universe.service.hanlder.impl.autogen;
+package com.universe.service.hanlder.impl.autogen.xml;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,11 +11,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import com.universe.service.hanlder.ButtonSelectionHandler;
-import com.universe.util.DialogUtils;
-import com.universe.util.IoUtils;
+import com.universe.common.util.DialogUtils;
+import com.universe.common.util.IoUtils;
+import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class DownloadConfigTemplateHandlerImpl implements ButtonSelectionHandler {
+public class DownloadConfigTemplateHandlerImpl implements GenByXmlButtonSelectionHandler {
 
   private static final String TEMPLATE_NAME = "mybatis-generator-template.xml";
 
