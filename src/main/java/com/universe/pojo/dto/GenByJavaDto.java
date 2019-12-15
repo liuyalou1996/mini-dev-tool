@@ -21,7 +21,7 @@ public class GenByJavaDto {
 
   private Text txInputTables;
 
-  private Text txTablePrefix;
+  private Text txRemovedTablePrefix;
   private Text txClassSuffix;
   private Text txMapperSuffix;
 
@@ -85,8 +85,8 @@ public class GenByJavaDto {
     return txInputTables;
   }
 
-  public Text getTxTablePrefix() {
-    return txTablePrefix;
+  public Text getTxRemovedTablePrefix() {
+    return txRemovedTablePrefix;
   }
 
   public Text getTxClassSuffix() {
@@ -201,8 +201,8 @@ public class GenByJavaDto {
     this.txInputTables = txInputTables;
   }
 
-  public void setTxTablePrefix(Text txTablePrefix) {
-    this.txTablePrefix = txTablePrefix;
+  public void setTxRemovedTablePrefix(Text txRemovedTablePrefix) {
+    this.txRemovedTablePrefix = txRemovedTablePrefix;
   }
 
   public void setTxClassSuffix(Text txClassSuffix) {

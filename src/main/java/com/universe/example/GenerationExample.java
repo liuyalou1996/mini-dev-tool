@@ -50,6 +50,7 @@ public class GenerationExample {
     PluginConfiguration pluginConfiguration = new PluginConfiguration();
     pluginConfiguration.setConfigurationType("com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin");
     pluginConfiguration.addProperty("domainObjectNameSuffix", "Dao");
+    pluginConfiguration.addProperty("removedTablePrefix", "tbl");
 
     PluginConfiguration toStringPluginConfig = new PluginConfiguration();
     toStringPluginConfig.setConfigurationType("com.universe.mbg.plugin.CommonsLangToStringPlugin");

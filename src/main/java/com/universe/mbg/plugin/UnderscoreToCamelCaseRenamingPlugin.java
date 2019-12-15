@@ -16,8 +16,8 @@ import org.mybatis.generator.config.Context;
 public class UnderscoreToCamelCaseRenamingPlugin extends PluginAdapter {
 
   private static final String REMOVED_TABLE_PREFIX = "removedTablePrefix";
-  private static final String DOMAIN_OBJECT_SUFFIX = "domainObjectSuffix";
-  private static final String SQL_MAPPER_SUFFIX = "sqlMapperSuffix";
+  private static final String DOMAIN_OBJECT_SUFFIX = "domainObjectNameSuffix";
+  private static final String MAPPER_SUFFIX = "mapperSuffix";
 
   @Override
   public boolean validate(List<String> warnings) {
@@ -39,8 +39,8 @@ public class UnderscoreToCamelCaseRenamingPlugin extends PluginAdapter {
     String javaClientTargetPackage = context.getJavaClientGeneratorConfiguration().getTargetPackage();
 
     String baseRecordType = getBaseRecordType(javaModelTargetPackage, modelName, (String) properties.get(DOMAIN_OBJECT_SUFFIX));
-    String javaMapperType = getMapperType(javaClientTargetPackage, modelName, (String) properties.get(SQL_MAPPER_SUFFIX));
-    String mapperFileName = getMapperFileName(modelName, (String) properties.get(SQL_MAPPER_SUFFIX));
+    String javaMapperType = getMapperType(javaClientTargetPackage, modelName, (String) properties.get(MAPPER_SUFFIX));
+    String mapperFileName = getMapperFileName(modelName, (String) properties.get(MAPPER_SUFFIX));
 
     // java实体全限定类名
     introspectedTable.setBaseRecordType(baseRecordType);
@@ -75,19 +75,11 @@ public class UnderscoreToCamelCaseRenamingPlugin extends PluginAdapter {
 
   public String getBaseRecordType(String javaModelTargetPackage, String modelName, String domainObjectSuffix) {
     String realModelName = modelName + (StringUtils.isBlank(domainObjectSuffix) ? "" : domainObjectSuffix);
-    if (StringUtils.isBlank(javaModelTargetPackage)) {
-      return realModelName;
-    }
-
     return javaModelTargetPackage + "." + realModelName;
   }
 
   private String getMapperType(String javaClientTargetPackage, String modelName, String sqlMapperSuffix) {
     String realMapperName = modelName + (StringUtils.isBlank(sqlMapperSuffix) ? "" : sqlMapperSuffix);
-    if (StringUtils.isBlank(javaClientTargetPackage)) {
-      return realMapperName;
-    }
-
     return javaClientTargetPackage + "." + realMapperName;
   }
 

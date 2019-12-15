@@ -33,7 +33,7 @@ public class GenByJavaComposite extends Composite {
 
   private Text txInputTables;
 
-  private Text txTablePrefix;
+  private Text txRemovedTablePrefix;
   private Text txClassSuffix;
   private Text txMapperSuffix;
 
@@ -52,12 +52,13 @@ public class GenByJavaComposite extends Composite {
   private Button btnEnableUpdateByPrimaryKey;
   private Button btnEnableDeleteByPrimaryKey;
   private Button btnEnableInsert;
-  private Button btnForceBigDecimal;
 
   private Button btnEnableToString;
   private Button btnUseActualColumnNames;
   private Button btnUseColumnIndexes;
   private Button btnTrimStrings;
+  private Button btnForceBigDecimal;
+
   private Button btnEnableCamelCase;
 
   private Button btnGenerate;
@@ -312,13 +313,13 @@ public class GenByJavaComposite extends Composite {
     btnEnableCamelCase.setText(" 是否启用表名下划线转驼峰");
     btnEnableCamelCase.setSelection(true);
 
-    Label lbTablePrefix = new Label(gpFileNameConfig, SWT.NONE);
-    lbTablePrefix.setToolTipText("生成类名时去除前缀，需开启下划线转驼峰");
-    lbTablePrefix.setBounds(22, 59, 115, 17);
-    lbTablePrefix.setText("需去除的表名前缀：");
+    Label lbRemovedTablePrefix = new Label(gpFileNameConfig, SWT.NONE);
+    lbRemovedTablePrefix.setToolTipText("生成类名时去除前缀，需开启下划线转驼峰");
+    lbRemovedTablePrefix.setBounds(22, 59, 115, 17);
+    lbRemovedTablePrefix.setText("需去除的表名前缀：");
 
-    txTablePrefix = new Text(gpFileNameConfig, SWT.BORDER);
-    txTablePrefix.setBounds(143, 56, 124, 23);
+    txRemovedTablePrefix = new Text(gpFileNameConfig, SWT.BORDER);
+    txRemovedTablePrefix.setBounds(143, 56, 124, 23);
 
     Label lbClassSuffix = new Label(gpFileNameConfig, SWT.NONE);
     lbClassSuffix.setToolTipText("生成类名时添加后缀，需开启下划线转驼峰");
@@ -341,12 +342,13 @@ public class GenByJavaComposite extends Composite {
       @Override
       public void widgetSelected(SelectionEvent e) {
         if (btnEnableCamelCase.getSelection()) {
-          txTablePrefix.setEnabled(true);
+          txRemovedTablePrefix.setEnabled(true);
           txClassSuffix.setEnabled(true);
           txMapperSuffix.setEnabled(true);
           return;
         }
-        txTablePrefix.setEnabled(false);
+
+        txRemovedTablePrefix.setEnabled(false);
         txClassSuffix.setEnabled(false);
         txMapperSuffix.setEnabled(false);
       }
@@ -377,7 +379,7 @@ public class GenByJavaComposite extends Composite {
     dto.setTxModelTargetPackage(txModelTargetPackage);
     dto.setTxClientTargetPackage(txClientTargetPackage);
     dto.setTxInputTables(txInputTables);
-    dto.setTxTablePrefix(txTablePrefix);
+    dto.setTxRemovedTablePrefix(txRemovedTablePrefix);
     dto.setTxClassSuffix(txClassSuffix);
     dto.setTxMapperSuffix(txMapperSuffix);
 
