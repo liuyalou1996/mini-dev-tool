@@ -90,7 +90,6 @@ public class ImportJsonConfigHandlerImpl implements GenByJavaButtonSelectionHand
     try {
       String jsonStr = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
       jsonConfigDto = JsonUtils.toJavaBean(jsonStr, JsonConfigDto.class);
-      DialogUtils.showInformationDialog(Display.getCurrent().getActiveShell(), "提示", "导入配置文件(.json)成功!");
     } catch (Exception e) {
       logger.error("导入配置文件失败(.json)：{}", e.getMessage(), e);
     }

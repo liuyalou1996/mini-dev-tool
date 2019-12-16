@@ -65,7 +65,6 @@ public class UnderscoreToCamelCaseRenamingPlugin extends PluginAdapter {
     StringBuilder modelNameBuilder = new StringBuilder();
     for (String item : rawTableName.split("_")) {
       if (StringUtils.isNotBlank(item) && !item.equalsIgnoreCase(removedTablePrefix)) {
-        System.err.println("item名为：" + item);
         modelNameBuilder.append(item.substring(0, 1).toUpperCase());
         if (item.length() > 1) {
           modelNameBuilder.append(item.substring(1).toLowerCase());

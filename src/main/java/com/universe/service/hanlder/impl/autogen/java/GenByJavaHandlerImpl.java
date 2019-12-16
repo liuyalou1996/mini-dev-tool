@@ -128,21 +128,28 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
     tableConfiguration.setUpdateByPrimaryKeyStatementEnabled(enableUpdateByPrimaryKey);
     tableConfiguration.setDeleteByPrimaryKeyStatementEnabled(enableDeleteBYPrimaryKey);
     tableConfiguration.setInsertStatementEnabled(enableInsert);
-    tableConfiguration.addProperty("useActualColumnNames", String.valueOf(useActualColumnNames));
-    tableConfiguration.addProperty("useColumnIndexes", String.valueOf(useColumnIndexes));
-    tableConfiguration.addProperty("trimStrings", String.valueOf(trimString));
 
     String url = StringUtils.trim(dto.getTxUrl().getText());
     String username = StringUtils.trim(dto.getTxUsername().getText());
     String schema = parseSchemaFromUrl(url, username);
-    System.err.println("schema为：" + schema);
     if (StringUtils.isNotBlank(schema)) {
-      tableConfiguration.addProperty("schema", schema);
+      tableConfiguration.setSchema(schema);
     }
 
+    // 表名前缀不添加模式
+    tableConfiguration.addProperty("ignoreQualifiersAtRuntime", "true");
+    tableConfiguration.addProperty("useActualColumnNames", String.valueOf(useActualColumnNames));
+    tableConfiguration.addProperty("useColumnIndexes", String.valueOf(useColumnIndexes));
+    tableConfiguration.addProperty("trimStrings", String.valueOf(trimString));
     return tableConfiguration;
   }
 
+  /**
+   * mysql数据库模式就是数据库名，oracle数据模式就是用户名
+   * @param url
+   * @param username
+   * @return
+   */
   private String parseSchemaFromUrl(String url, String username) {
     if (url.startsWith("jdbc:mysql")) {
       // mysql高版本可能会带?

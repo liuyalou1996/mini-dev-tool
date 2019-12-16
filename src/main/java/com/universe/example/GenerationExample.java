@@ -109,7 +109,7 @@ public class GenerationExample {
   }
 
   public static void main(String[] args) throws Exception {
-    generateByJava();
+    generateByXml();
   }
 
 }
