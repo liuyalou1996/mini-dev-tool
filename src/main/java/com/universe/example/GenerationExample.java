@@ -38,7 +38,7 @@ public class GenerationExample {
     System.err.println(configFile);
   }
 
-  public static void generateByCode() throws Exception {
+  public static void generateByJava() throws Exception {
     String userHome = System.getProperty("user.home");
     String projectPath = userHome + File.separator + "test" + File.separator + "minidevtool" + File.separator;
     List<String> warnings = new ArrayList<String>();
@@ -109,7 +109,7 @@ public class GenerationExample {
   }
 
   public static void main(String[] args) throws Exception {
-    generateByCode();
+    generateByJava();
   }
 
 }

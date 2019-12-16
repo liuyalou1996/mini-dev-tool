@@ -20,7 +20,7 @@ public class ChooseDriverHanlderImpl implements GenByJavaButtonSelectionHandler 
       return;
     }
 
-    Text txDriverPath = dto.getTxDrivePath();
+    Text txDriverPath = dto.getTxDriverPath();
     txDriverPath.setText(driverPath);
   }
 

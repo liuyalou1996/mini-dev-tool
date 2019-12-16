@@ -15,7 +15,7 @@ import com.universe.common.util.DialogUtils;
 import com.universe.common.util.IoUtils;
 import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class DownloadConfigTemplateHandlerImpl implements GenByXmlButtonSelectionHandler {
+public class DownloadXmlConfigTemplateHandlerImpl implements GenByXmlButtonSelectionHandler {
 
   private static final String TEMPLATE_NAME = "mybatis-generator-template.xml";
 

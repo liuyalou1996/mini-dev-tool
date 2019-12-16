@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import com.universe.common.util.DialogUtils;
 import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class ExportConfigHandlerImpl implements GenByXmlButtonSelectionHandler {
+public class ExportXmlConfigHandlerImpl implements GenByXmlButtonSelectionHandler {
 
   @Override
   public void onButtonSelected(Text txFilePath, StyledText txFileContent) {
@@ -38,8 +38,10 @@ public class ExportConfigHandlerImpl implements GenByXmlButtonSelectionHandler {
       if (SWT.YES == result) {
         exportCofigFile(target, fileContent);
       }
+      return;
     }
 
+    exportCofigFile(target, fileContent);
   }
 
   private void exportCofigFile(File target, String fileContent) {

@@ -27,7 +27,7 @@ public class MbgProgressCallback extends NullProgressCallback {
   @Override
   public void startTask(String taskName) {
     monitor.subTask(taskName);
-    monitor.worked(10);
+    monitor.worked(5);
     LOGGER.info("开始任务，任务名为：{}", taskName);
   }
 

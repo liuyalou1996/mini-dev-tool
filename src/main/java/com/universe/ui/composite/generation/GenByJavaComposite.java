@@ -21,7 +21,7 @@ import com.universe.service.listener.selection.GenByJavaButtonSelectionListener;
 public class GenByJavaComposite extends Composite {
 
   private Combo comboDriver;
-  private Text txDrivePath;
+  private Text txDriverPath;
   private Text txUrl;
   private Text txUsername;
   private Text txPassword;
@@ -62,6 +62,8 @@ public class GenByJavaComposite extends Composite {
   private Button btnEnableCamelCase;
 
   private Button btnGenerate;
+  private Button btnImportConfig;
+  private Button btnExportConfig;
 
   public GenByJavaComposite(Composite parent) {
     super(parent, SWT.NONE);
@@ -105,16 +107,16 @@ public class GenByJavaComposite extends Composite {
     lbDriverPath.setBounds(20, 50, 136, 17);
     lbDriverPath.setText("请选择JDBC驱动包(.jar)：");
 
-    txDrivePath = new Text(gpConnInfo, SWT.BORDER);
-    txDrivePath.setBounds(175, 50, 511, 23);
+    txDriverPath = new Text(gpConnInfo, SWT.BORDER);
+    txDriverPath.setBounds(175, 50, 551, 23);
 
     btnChooseDriverPath = new Button(gpConnInfo, SWT.NONE);
-    btnChooseDriverPath.setBounds(692, 50, 71, 23);
+    btnChooseDriverPath.setBounds(732, 50, 71, 23);
     btnChooseDriverPath.setText("请选择");
     btnChooseDriverPath.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByJava.CHOOSE_DRIVER);
 
     GenByJavaDto dto = new GenByJavaDto();
-    dto.setTxDrivePath(txDrivePath);
+    dto.setTxDriverPath(txDriverPath);
     btnChooseDriverPath.addSelectionListener(new GenByJavaButtonSelectionListener(dto));
 
     Label lbUrl = new Label(gpConnInfo, SWT.NONE);
@@ -122,7 +124,7 @@ public class GenByJavaComposite extends Composite {
     lbUrl.setText("请输入URL：");
 
     txUrl = new Text(gpConnInfo, SWT.BORDER);
-    txUrl.setBounds(175, 81, 164, 23);
+    txUrl.setBounds(175, 81, 551, 23);
 
     Label lbUsername = new Label(gpConnInfo, SWT.NONE);
     lbUsername.setBounds(20, 113, 84, 17);
@@ -149,9 +151,11 @@ public class GenByJavaComposite extends Composite {
     Label lbTargetProject = new Label(gpProjectInfo, SWT.NONE);
     lbTargetProject.setBounds(22, 20, 90, 17);
     lbTargetProject.setText("项目路径：");
+    lbTargetProject.setToolTipText("项目根目录");
 
     txTargetProject = new Text(gpProjectInfo, SWT.BORDER);
     txTargetProject.setBounds(142, 17, 545, 23);
+    txTargetProject.setToolTipText("项目根目录");
 
     btnChooseProject = new Button(gpProjectInfo, SWT.NONE);
     btnChooseProject.setBounds(693, 17, 66, 23);
@@ -165,23 +169,29 @@ public class GenByJavaComposite extends Composite {
     Label lbModelTargetPackage = new Label(gpProjectInfo, SWT.NONE);
     lbModelTargetPackage.setBounds(23, 49, 61, 17);
     lbModelTargetPackage.setText("实体包名：");
+    lbModelTargetPackage.setToolTipText("src/main/java目录");
 
     txModelTargetPackage = new Text(gpProjectInfo, SWT.BORDER);
     txModelTargetPackage.setBounds(142, 46, 240, 23);
+    txModelTargetPackage.setToolTipText("src/main/java目录");
 
     Label lbClientTargetPackage = new Label(gpProjectInfo, SWT.NONE);
     lbClientTargetPackage.setBounds(22, 78, 103, 17);
     lbClientTargetPackage.setText("Mapper接口包名：");
+    lbClientTargetPackage.setToolTipText("src/main/java目录");
 
     txClientTargetPackage = new Text(gpProjectInfo, SWT.BORDER);
     txClientTargetPackage.setBounds(142, 75, 240, 23);
+    txClientTargetPackage.setToolTipText("src/main/java目录");
 
     Label lbXmlTargetPackage = new Label(gpProjectInfo, SWT.NONE);
     lbXmlTargetPackage.setBounds(406, 78, 102, 17);
     lbXmlTargetPackage.setText("Sql映射文件包名：");
+    lbXmlTargetPackage.setToolTipText("src/main/resources目录");
 
     txXmlTargetPackage = new Text(gpProjectInfo, SWT.BORDER);
     txXmlTargetPackage.setBounds(519, 75, 240, 23);
+    txXmlTargetPackage.setToolTipText("src/main/resources目录");
   }
 
   private void initTableCountConfigComponent(SashForm sashForm) {
@@ -359,25 +369,42 @@ public class GenByJavaComposite extends Composite {
     Composite compGen = new Composite(sashForm, SWT.BORDER);
     compGen.setLayout(new FillLayout(SWT.HORIZONTAL));
 
+    GenByJavaButtonSelectionListener listener = new GenByJavaButtonSelectionListener(buildNecessaryParams());
+
     btnGenerate = new Button(compGen, SWT.NONE);
+    btnGenerate.setText("自动生成");
     btnGenerate.setToolTipText("自动生成代码");
     btnGenerate.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
-    btnGenerate.setText("自动生成");
     btnGenerate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByJava.AUTO_GENERATE_BY_JAVA);
-    btnGenerate.addSelectionListener(new GenByJavaButtonSelectionListener(buildNecessaryParams()));
+    btnGenerate.addSelectionListener(listener);
+
+    btnImportConfig = new Button(compGen, SWT.NONE);
+    btnImportConfig.setToolTipText("导入配置(.json文件)");
+    btnImportConfig.setText("导入配置");
+    btnImportConfig.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
+    btnImportConfig.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByJava.IMPORT_JSON_COFIG);
+    btnImportConfig.addSelectionListener(listener);
+
+    btnExportConfig = new Button(compGen, SWT.NONE);
+    btnExportConfig.setToolTipText("导出为.json文件");
+    btnExportConfig.setText("导出配置");
+    btnExportConfig.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE));
+    btnExportConfig.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByJava.EXPORT_JSON_CONFIG);
+    btnExportConfig.addSelectionListener(listener);
 
   }
 
   private GenByJavaDto buildNecessaryParams() {
     GenByJavaDto dto = new GenByJavaDto();
     dto.setComboDriver(comboDriver);
-    dto.setTxDrivePath(txDrivePath);
+    dto.setTxDriverPath(txDriverPath);
     dto.setTxUrl(txUrl);
     dto.setTxUsername(txUsername);
     dto.setTxPassword(txPassword);
     dto.setTxTargetProject(txTargetProject);
     dto.setTxModelTargetPackage(txModelTargetPackage);
     dto.setTxClientTargetPackage(txClientTargetPackage);
+    dto.setTxXmlTargetPackage(txXmlTargetPackage);
     dto.setTxInputTables(txInputTables);
     dto.setTxRemovedTablePrefix(txRemovedTablePrefix);
     dto.setTxClassSuffix(txClassSuffix);

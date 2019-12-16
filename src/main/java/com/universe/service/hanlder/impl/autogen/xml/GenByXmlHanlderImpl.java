@@ -42,7 +42,7 @@ public class GenByXmlHanlderImpl implements GenByXmlButtonSelectionHandler {
       ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(txFileContent.getShell());
       progressDialog.run(true, true, new MbgProgressRunnable(myBatisGenerator));
     } catch (Exception e) {
-      LOGGER.error("生成模板异常：{}", e.getMessage(), e);
+      LOGGER.error("生成代码异常：{}", e.getMessage(), e);
       DialogUtils.showErrorDialog(txFileContent.getShell(), "错误提示", e.getMessage());
     }
   }

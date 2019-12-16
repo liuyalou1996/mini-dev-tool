@@ -46,7 +46,7 @@ public class GenByXmlComposite extends Composite {
     btnChooseConfigFile.setLocation(431, 8);
     btnChooseConfigFile.setSize(105, 26);
     btnChooseConfigFile.setText("请选择配置文件");
-    btnChooseConfigFile.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.CHOOSE_CONFIG_FILE);
+    btnChooseConfigFile.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.IMPORT_XML_CONFIG);
 
     btnGen = new Button(compUp, SWT.NONE);
     btnGen.setLocation(549, 8);
@@ -57,12 +57,12 @@ public class GenByXmlComposite extends Composite {
     btnChooseTemplate = new Button(compUp, SWT.NONE);
     btnChooseTemplate.setBounds(667, 8, 80, 27);
     btnChooseTemplate.setText("下载配置模板");
-    btnChooseTemplate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.DOWNLOAD_CONFIG_TEMPLATE);
+    btnChooseTemplate.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.DOWNLOAD_XML_CONFIG_TEMPLATE);
 
     btnExport = new Button(compUp, SWT.NONE);
     btnExport.setBounds(756, 8, 80, 27);
     btnExport.setText("导出配置");
-    btnExport.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.EXPORT_CONFIG);
+    btnExport.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.EXPORT_XML_CONFIG);
 
     Composite compDown = new Composite(sashForm, SWT.NONE);
     compDown.setLayout(new FillLayout(SWT.HORIZONTAL));

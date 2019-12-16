@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Text;
 import com.universe.common.util.DialogUtils;
 import com.universe.service.hanlder.GenByXmlButtonSelectionHandler;
 
-public class ChooseConfigFileHandlerImpl implements GenByXmlButtonSelectionHandler {
+public class ImportXmlConfigHandlerImpl implements GenByXmlButtonSelectionHandler {
 
   @Override
   public void onButtonSelected(Text txConfigFilePath, StyledText txConfigContent) {

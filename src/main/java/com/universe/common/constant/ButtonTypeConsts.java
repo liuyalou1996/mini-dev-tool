@@ -5,9 +5,9 @@ public interface ButtonTypeConsts {
   interface GenByXml {
 
     /**
-     * 选择配置文件
+     * 导入xml配置
      */
-    String CHOOSE_CONFIG_FILE = "1";
+    String IMPORT_XML_CONFIG = "1";
 
     /**
      * 根据xml自动生成
@@ -17,12 +17,12 @@ public interface ButtonTypeConsts {
     /**
      * 下载配置模板
      */
-    String DOWNLOAD_CONFIG_TEMPLATE = "3";
+    String DOWNLOAD_XML_CONFIG_TEMPLATE = "3";
 
     /**
-     * 导出配置
+     * 导出xml配置
      */
-    String EXPORT_CONFIG = "4";
+    String EXPORT_XML_CONFIG = "4";
   }
 
   interface GenByJava {
@@ -41,6 +41,16 @@ public interface ButtonTypeConsts {
      * 根据自定义配置生成
      */
     String AUTO_GENERATE_BY_JAVA = "7";
+
+    /**
+     * 导入配置
+     */
+    String IMPORT_JSON_COFIG = "8";
+
+    /**
+     * 导出配置
+     */
+    String EXPORT_JSON_CONFIG = "9";
 
   }
 
