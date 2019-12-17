@@ -3,11 +3,28 @@
     PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
     "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+<!-- MBG xml配置，具体请参考：http://mybatis.org/generator/configreference/xmlconfig.html -->
 <generatorConfiguration>
     <classPathEntry location="D:\MavenRepository\mysql\mysql-connector-java\8.0.17\mysql-connector-java-8.0.17.jar"/>
 	
-    <context id="autoGeneration" targetRuntime="MyBatis3">
+    <context id="autoGeneration" targetRuntime="MyBatis3" defaultModelType="conditional">
+		
+		<!-- 表名下换线转驼峰命名插件 -->
+		<plugin type="com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin">
+			<!-- 需去除的表前缀 -->
+			<property name="removedTablePrefix" value="tbl"/>
+			<!-- 需添加的实体名后缀-->
+			<property name="domainObjectNameSuffix" value="Do"/>
+			<!-- 需添加的Mapper接口名、xml文件名后缀-->
+			<property name="mapperSuffix" value="Mapper"/>
+			<!-- 通过如上配置，tbl_user表转换后的实体名为UserDo，Mapper接口名为UserMapper，xml文件名为UserMapper.xml -->
+		</plugin>
+		
+		<!-- 实体添加toString方法插件，这里使用commons lang的ToStringBuilder -->
+		<plugin type="com.universe.mbg.plugin.CommonsLangToStringPlugin" />
+		    	
         <commentGenerator>
+        	<!-- 不生成注释 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
@@ -22,7 +39,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 		
-		<!-- domain object生成配置，生成的java bean字段默认命名规则为数据库列名下划线转驼峰 -->
+		<!-- domain object生成配置-->
         <javaModelGenerator targetPackage="com.universe.pojo.domain" 
         					targetProject="C:\Users\liuyalou\test\minidevtool\src\main\java">
             <property name="enableSubPackages" value="true"/>
@@ -31,7 +48,6 @@
 		<!-- *Mapper.xml生成配置 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="C:\Users\liuyalou\test\minidevtool\src\main\resources">
             <property name="enableSubPackages" value="true"/>
-            <!-- <property name="trimStrings" value="true" /> -->
         </sqlMapGenerator>
 		
 		<!-- *Mapper.java生成配置 -->
@@ -40,14 +56,15 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-		<!-- 相关映射配置 -->
-        <table tableName="tbl_user" domainObjectName="UserDo" mapperName="UserMapper" 
+		<!--生成表配置，Oracle数据库Schema为用户名，Mysql数据库Schema为数据库名，Mysql数据库需设置catalog，表名支持sql通配符-->
+        <table tableName="%" schema="shiro" catalog="shiro"
         	   enableCountByExample="false" 
         	   enableDeleteByExample="false" 
                enableInsert="false" 
                enableSelectByExample="false" 
                enableUpdateByExample="false">
-            <property name="useActualColumnNames" value="false"/>
+            <!-- 忽略模式，即不在表名前添加模式作为前缀 -->
+          	<property name="ignoreQualifiersAtRuntime" value="true"/>
         </table>
     </context>
     

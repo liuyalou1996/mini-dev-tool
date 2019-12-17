@@ -330,6 +330,7 @@ public class GenByJavaComposite extends Composite {
 
     txRemovedTablePrefix = new Text(gpFileNameConfig, SWT.BORDER);
     txRemovedTablePrefix.setBounds(143, 56, 124, 23);
+    txRemovedTablePrefix.setText("tbl");
 
     Label lbClassSuffix = new Label(gpFileNameConfig, SWT.NONE);
     lbClassSuffix.setToolTipText("生成类名时添加后缀，需开启下划线转驼峰");
@@ -338,6 +339,7 @@ public class GenByJavaComposite extends Composite {
 
     txClassSuffix = new Text(gpFileNameConfig, SWT.BORDER);
     txClassSuffix.setBounds(143, 85, 124, 23);
+    txClassSuffix.setText("Do");
 
     Label lbMapperSuffix = new Label(gpFileNameConfig, SWT.NONE);
     lbMapperSuffix.setToolTipText("Mapper接口名或Mapper映射文件名后缀，需开启下划线转驼峰");
@@ -346,6 +348,7 @@ public class GenByJavaComposite extends Composite {
 
     txMapperSuffix = new Text(gpFileNameConfig, SWT.BORDER);
     txMapperSuffix.setBounds(529, 85, 124, 23);
+    txMapperSuffix.setText("Mapper");
 
     btnEnableCamelCase.addSelectionListener(new SelectionAdapter() {
 

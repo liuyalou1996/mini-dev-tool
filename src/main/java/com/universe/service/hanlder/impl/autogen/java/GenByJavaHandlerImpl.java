@@ -32,6 +32,9 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
 
   private static Logger logger = LoggerFactory.getLogger(GenByJavaHandlerImpl.class);
 
+  private static final String JAVA_PATH = "src" + File.separator + "main" + File.separator + "java";
+  private static final String RESOURCES_PATH = "src" + File.separator + "main" + File.separator + "resources";
+
   @Override
   public void onButtonSelected(GenByJavaDto dto) {
     Context context = buildContext();
@@ -134,6 +137,10 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
     String schema = parseSchemaFromUrl(url, username);
     if (StringUtils.isNotBlank(schema)) {
       tableConfiguration.setSchema(schema);
+      if (url.startsWith("jdbc:mysql")) {
+        // mysql数据库还需设置catalog，只设置schema无法区分
+        tableConfiguration.setCatalog(schema);
+      }
     }
 
     // 表名前缀不添加模式
@@ -164,7 +171,6 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
     }
 
     throw new IllegalArgumentException("不支持的驱动类名，目前只支持Oracle和Mysql!");
-
   }
 
   private void setJavaClientGeneratorConfiguration(Context context, GenByJavaDto dto) {
@@ -177,7 +183,8 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
 
     JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = new JavaClientGeneratorConfiguration();
     javaClientGeneratorConfiguration.setConfigurationType("XMLMAPPER");
-    javaClientGeneratorConfiguration.setTargetProject(targetProject + "src\\main\\java");
+
+    javaClientGeneratorConfiguration.setTargetProject(targetProject + File.separator + JAVA_PATH);
     javaClientGeneratorConfiguration.setTargetPackage(clientTargetPackage);
     javaClientGeneratorConfiguration.addProperty("enableSubPackages", "true");
 
@@ -192,9 +199,8 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
       throw new IllegalArgumentException("Sql映射文件包名不能为空!");
     }
 
-    String resourcesPath = "src" + File.separator + "main" + File.separator + "resources";
     SqlMapGeneratorConfiguration sqlMapGeneratorConfiguration = new SqlMapGeneratorConfiguration();
-    sqlMapGeneratorConfiguration.setTargetProject(targetProject + File.separator + resourcesPath);
+    sqlMapGeneratorConfiguration.setTargetProject(targetProject + File.separator + RESOURCES_PATH);
     sqlMapGeneratorConfiguration.setTargetPackage(xmlTargetPackage);
 
     context.setSqlMapGeneratorConfiguration(sqlMapGeneratorConfiguration);
@@ -211,9 +217,8 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
       throw new IllegalArgumentException("实体包名不能为空!");
     }
 
-    String javaPath = "src" + File.separator + "main" + File.separator + "java";
     JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
-    javaModelGeneratorConfiguration.setTargetProject(targetProject + File.separator + javaPath);
+    javaModelGeneratorConfiguration.setTargetProject(targetProject + File.separator + JAVA_PATH);
     javaModelGeneratorConfiguration.setTargetPackage(modelTargetPackage);
     javaModelGeneratorConfiguration.addProperty("enableSubPackages", "false");
 

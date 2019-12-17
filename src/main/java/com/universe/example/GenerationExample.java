@@ -35,7 +35,6 @@ public class GenerationExample {
     DefaultShellCallback callback = new DefaultShellCallback(true);
     MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
     myBatisGenerator.generate(null);
-    System.err.println(configFile);
   }
 
   public static void generateByJava() throws Exception {
@@ -49,8 +48,9 @@ public class GenerationExample {
 
     PluginConfiguration pluginConfiguration = new PluginConfiguration();
     pluginConfiguration.setConfigurationType("com.universe.mbg.plugin.UnderscoreToCamelCaseRenamingPlugin");
-    pluginConfiguration.addProperty("domainObjectNameSuffix", "Dao");
+    pluginConfiguration.addProperty("domainObjectNameSuffix", "Do");
     pluginConfiguration.addProperty("removedTablePrefix", "tbl");
+    pluginConfiguration.addProperty("mapperSuffix", "Mapper");
 
     PluginConfiguration toStringPluginConfig = new PluginConfiguration();
     toStringPluginConfig.setConfigurationType("com.universe.mbg.plugin.CommonsLangToStringPlugin");
@@ -84,11 +84,14 @@ public class GenerationExample {
     javaClientGeneratorConfiguration.addProperty("enableSubPackages", "true");
 
     TableConfiguration tableConfiguration = new TableConfiguration(context);
-    tableConfiguration.setTableName("tbl_user");
+    tableConfiguration.setTableName("%");
+    tableConfiguration.setSchema("shiro");
+    tableConfiguration.setCatalog("shiro");
     tableConfiguration.setCountByExampleStatementEnabled(false);
     tableConfiguration.setDeleteByExampleStatementEnabled(false);
     tableConfiguration.setSelectByExampleStatementEnabled(false);
     tableConfiguration.setUpdateByExampleStatementEnabled(false);
+    tableConfiguration.addProperty("ignoreQualifiersAtRuntime", "true");
 
     context.addPluginConfiguration(pluginConfiguration);
     context.addPluginConfiguration(toStringPluginConfig);
@@ -109,7 +112,7 @@ public class GenerationExample {
   }
 
   public static void main(String[] args) throws Exception {
-    generateByXml();
+    generateByJava();
   }
 
 }

@@ -64,7 +64,7 @@ public class ExportJsonConfigHandlerImpl implements GenByJavaButtonSelectionHand
     jsonConfigDto.setMapperXmlPackage(StringUtils.trim(dto.getTxXmlTargetPackage().getText()));
 
     jsonConfigDto.setGenAllTables(dto.getBtnAllTables().getSelection());
-    jsonConfigDto.setGenInputTables(dto.getBtnEnableToString().getSelection());
+    jsonConfigDto.setGenInputTables(dto.getBtnInputTables().getSelection());
     jsonConfigDto.setInputTables(StringUtils.trim(dto.getTxInputTables().getText()));
 
     jsonConfigDto.setEnableSelectByExample(dto.getBtnEnableSelectByExample().getSelection());

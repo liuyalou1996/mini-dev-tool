@@ -61,6 +61,7 @@ public class MainWindow {
     initTree(sashform);
     // 初始化选项卡
     initTabFolder(sashform);
+
     sashform.setWeights(new int[] { 202, 741 });
 
   }
