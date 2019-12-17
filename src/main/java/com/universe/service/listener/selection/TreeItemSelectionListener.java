@@ -31,7 +31,8 @@ public class TreeItemSelectionListener extends SelectionAdapter {
 
     // 已存在的面板不重复打开
     for (CTabItem ctabItem : tabFolder.getItems()) {
-      if (ctabItem.getData().equals(compType)) {
+      if (ctabItem.getData(SystemConsts.COMP_TYPE).equals(compType)) {
+        tabFolder.setSelection(ctabItem);
         return;
       }
     }
@@ -42,7 +43,7 @@ public class TreeItemSelectionListener extends SelectionAdapter {
       tabItem.setText(treeItem.getText());
       tabItem.setControl(comp);
       // 设置面板类型用于判断是否已经打开过
-      tabItem.setData(compType);
+      tabItem.setData(SystemConsts.COMP_TYPE, compType);
       tabFolder.setSelection(tabItem);
       // 绑定选项卡
       composite.setData(SystemConsts.ATTACHED_TAB_ITEM, tabItem);

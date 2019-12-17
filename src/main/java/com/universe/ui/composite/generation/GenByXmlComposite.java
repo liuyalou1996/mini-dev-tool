@@ -52,6 +52,7 @@ public class GenByXmlComposite extends Composite {
     btnGen.setLocation(549, 8);
     btnGen.setSize(69, 27);
     btnGen.setText("生成代码");
+    btnGen.setEnabled(false);
     btnGen.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.AUTO_GENERATE_BY_XML);
 
     btnChooseTemplate = new Button(compUp, SWT.NONE);
@@ -62,6 +63,7 @@ public class GenByXmlComposite extends Composite {
     btnExport = new Button(compUp, SWT.NONE);
     btnExport.setBounds(756, 8, 80, 27);
     btnExport.setText("导出配置");
+    btnExport.setEnabled(false);
     btnExport.setData(SystemConsts.BUTTON_TYPE, ButtonTypeConsts.GenByXml.EXPORT_XML_CONFIG);
 
     Composite compDown = new Composite(sashForm, SWT.NONE);
@@ -76,7 +78,7 @@ public class GenByXmlComposite extends Composite {
     // 关键字着色
     txFileContent.addExtendedModifyListener(new GenByXmlExtendedModifyListener());
     // 文本改变加*号
-    txFileContent.addModifyListener(new StyledTextModifyListener(this));
+    txFileContent.addModifyListener(new StyledTextModifyListener(this, btnGen, btnExport));
 
     // 按钮添加选择监听器
     GenByXmlButtonSelectionListener selectionListener = new GenByXmlButtonSelectionListener(txFilePath, txFileContent);

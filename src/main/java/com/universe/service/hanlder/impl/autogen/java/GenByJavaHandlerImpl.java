@@ -55,7 +55,7 @@ public class GenByJavaHandlerImpl implements GenByJavaButtonSelectionHandler {
       // 生成代码
       generateCode(context, dto);
     } catch (Exception e) {
-      logger.error("生成代码异常{}", e.getMessage(), e);
+      logger.error("生成代码异常：{}", e.getMessage(), e);
       DialogUtils.showErrorDialog(Display.getCurrent().getActiveShell(), "错误提示", e.getMessage());
     }
   }

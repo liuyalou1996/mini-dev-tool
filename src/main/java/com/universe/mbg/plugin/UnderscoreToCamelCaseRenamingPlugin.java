@@ -15,8 +15,17 @@ import org.mybatis.generator.config.Context;
  */
 public class UnderscoreToCamelCaseRenamingPlugin extends PluginAdapter {
 
+  /**
+   * 需去除的表前缀
+   */
   private static final String REMOVED_TABLE_PREFIX = "removedTablePrefix";
+  /**
+   * 领域对象名后缀
+   */
   private static final String DOMAIN_OBJECT_SUFFIX = "domainObjectNameSuffix";
+  /**
+   * mapper接口后缀
+   */
   private static final String MAPPER_SUFFIX = "mapperSuffix";
 
   @Override

@@ -52,6 +52,7 @@ public class MainWindow {
     shell.setSize(1126, 705);
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
+    shell.setImage(SWTResourceManager.getImage(MainWindow.class, "/images/icon.png"));
 
     UiUtils.centerShell(shell.getDisplay(), shell);
 
