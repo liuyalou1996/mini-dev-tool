@@ -63,7 +63,7 @@ public class MainWindow {
   }
 
   private void initShell() {
-    shell = new Shell();
+    shell = new Shell(SWT.CLOSE | SWT.MIN | SWT.TITLE);
     shell.setSize(1126, 705);
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
