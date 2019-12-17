@@ -68,7 +68,7 @@ public class MainWindow {
     shell.setText("Mini Dev Tool");
     shell.setLayout(new FillLayout(SWT.HORIZONTAL));
     // 设置图标
-    Image image = new Image(shell.getDisplay(), MainWindow.class.getResourceAsStream("/images/icon.png"));
+    Image image = new Image(shell.getDisplay(), MainWindow.class.getResourceAsStream("/images/logo.png"));
     shell.setImage(image);
     image.dispose();
 
