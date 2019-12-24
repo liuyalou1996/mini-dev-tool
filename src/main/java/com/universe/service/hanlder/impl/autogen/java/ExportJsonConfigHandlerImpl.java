@@ -31,7 +31,7 @@ public class ExportJsonConfigHandlerImpl implements GenByJavaButtonSelectionHand
     File target = new File(targetPath);
     if (target.exists()) {
       int result = DialogUtils.showQuestionDialog(Display.getCurrent().getActiveShell(), "提示", "当前文件已存在，确认覆盖?");
-      if (SWT.OK == result) {
+      if (SWT.YES == result) {
         exportJsonConfigFile(fileContent, target);
       }
       return;
